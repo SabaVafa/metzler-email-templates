@@ -1,0 +1,11 @@
+{
+  "name": "metzler-email-templates",
+  "version": "1.0.0",
+  "private": true,
+  "description": "17 transactional and account email templates for edelstahl-tuerklingel.de (JTL-Shop 5)",
+  "scripts": {
+    "preview": "npx serve -p 5200"
+  },
+  "author": "Saba Vafakhah <s.vafakhah@metzlergmbh.de>",
+  "license": "UNLICENSED"
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Metzler Email Templates &mdash; Preview Index</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background: #f2f4f2; color: #1a1a1a; padding: 48px 24px; }
+    .wrap { max-width: 960px; margin: 0 auto; }
+    header { background: #015253; color: #fff; padding: 36px 40px; border-radius: 8px; margin-bottom: 32px; }
+    header h1 { font-size: 24px; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 6px; }
+    header p { font-size: 14px; opacity: 0.85; line-height: 1.6; }
+    h2 { font-size: 13px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; color: #555; margin: 32px 0 14px; padding-bottom: 8px; border-bottom: 1px solid #d6dcd6; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
+    .card { background: #fff; border: 1px solid #e6ebe6; border-radius: 6px; padding: 18px 20px; text-decoration: none; color: inherit; transition: border-color .15s, transform .15s; display: block; }
+    .card:hover { border-color: #015253; transform: translateY(-1px); }
+    .card .num { font-size: 11px; font-weight: 700; color: #015253; letter-spacing: 1px; }
+    .card .title { font-size: 15px; font-weight: 600; color: #1a1a1a; margin: 4px 0 6px; }
+    .card .desc { font-size: 13px; color: #666; line-height: 1.5; }
+    footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #d6dcd6; font-size: 12px; color: #767676; line-height: 1.7; }
+    footer a { color: #015253; text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+    code { background: #eef2ee; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Metzler Email Templates</h1>
+      <p>17 transactional &amp; account email templates for JTL-Shop 5 &middot; edelstahl-tuerklingel.de</p>
+    </header>
+
+    <h2>Transactional journey</h2>
+    <div class="grid">
+      <a class="card" href="templates/order-confirmation.html"><div class="num">01</div><div class="title">Order confirmation</div><div class="desc">&sect;312f order confirmation &middot; Vorkasse &middot; tracker step 1</div></a>
+      <a class="card" href="templates/payment-confirmation.html"><div class="num">02</div><div class="title">Payment confirmation</div><div class="desc">Vorkasse received &middot; tracker step 2</div></a>
+      <a class="card" href="templates/production-guide.html"><div class="num">03</div><div class="title">Production guide</div><div class="desc">T+2 mid-journey &middot; &Auml;nderungen-Deadline &middot; tracker step 3</div></a>
+      <a class="card" href="templates/production-delay.html"><div class="num">03b</div><div class="title">Production delay</div><div class="desc">Werkstatt-Einblick &middot; alert &middot; delay-specific FAQ</div></a>
+      <a class="card" href="templates/invoice-delivery.html"><div class="num">04</div><div class="title">Invoice &amp; delivery</div><div class="desc">Shipped &middot; &sect;14 UStG invoice PDF &middot; tracker step 4</div></a>
+      <a class="card" href="templates/track-trace.html"><div class="num">05</div><div class="title">Track &amp; trace</div><div class="desc">DHL out-for-delivery &middot; tracker step 5</div></a>
+      <a class="card" href="templates/track-trace-delay.html"><div class="num">05b</div><div class="title">Carrier delay</div><div class="desc">DHL delay &middot; carrier-alert conditional</div></a>
+      <a class="card" href="templates/delivered.html"><div class="num">06</div><div class="title">Delivered</div><div class="desc">Arrived &middot; tracker complete &middot; upsell + newsletter</div></a>
+      <a class="card" href="templates/review-request.html"><div class="num">07</div><div class="title">Review request</div><div class="desc">T+3 invite &middot; Dankesch&ouml;n card &middot; newsletter</div></a>
+      <a class="card" href="templates/review-confirmation.html"><div class="num">08</div><div class="title">Review confirmation</div><div class="desc">Submission confirmed &middot; shipping card</div></a>
+      <a class="card" href="templates/gutschein.html"><div class="num">09</div><div class="title">Gutschein</div><div class="desc">10&thinsp;% voucher DANKE10</div></a>
+      <a class="card" href="templates/widerrufsbestaetigung.html"><div class="num">10</div><div class="title">Widerruf confirmation</div><div class="desc">Cancellation confirmed (non-custom only)</div></a>
+    </div>
+
+    <h2>Ancillary &amp; account</h2>
+    <div class="grid">
+      <a class="card" href="templates/product-question-confirmation.html"><div class="num">11</div><div class="title">Product question</div><div class="desc">Product Q submitted</div></a>
+      <a class="card" href="templates/password-reset.html"><div class="num">12</div><div class="title">Password reset</div><div class="desc">&laquo;Passwort vergessen?&raquo; click</div></a>
+      <a class="card" href="templates/registration-verify.html"><div class="num">13</div><div class="title">Registration verify</div><div class="desc">Signup email verification</div></a>
+      <a class="card" href="templates/registration-welcome.html"><div class="num">14</div><div class="title">Registration welcome</div><div class="desc">After verification</div></a>
+      <a class="card" href="templates/account-deletion.html"><div class="num">15</div><div class="title">Account deletion</div><div class="desc">DSGVO Art. 17 deletion complete</div></a>
+    </div>
+
+    <footer>
+      Preview: run <code>npx serve -p 5200</code> from this folder, then open
+      <a href="http://localhost:5200/">http://localhost:5200/</a>.<br />
+      Documentation: <a href="docs/README.md">README</a> &middot;
+      <a href="docs/PLACEHOLDERS.md">Placeholders</a> &middot;
+      <a href="docs/TRIGGERS.md">Triggers</a> &middot;
+      <a href="docs/LEGAL.md">Legal</a> &middot;
+      <a href="docs/ASSETS.md">Assets</a> &middot;
+      <a href="docs/OPEN-ITEMS.md">Open items</a>
+    </footer>
+  </div>
+</body>
+</html>
