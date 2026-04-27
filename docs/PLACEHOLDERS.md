@@ -40,7 +40,6 @@ Every `{$variable}` referenced across the 17 templates. Types and example values
 
 | Placeholder | Used in | Type | Purpose |
 |---|---|---|---|
-| `{$workshopAlert}` | production-delay | bool / string | Fire only when production is delayed; carries the delay-reason text |
 | `{$carrierAlert}` | track-trace-delay | bool / string | Fire only when carrier reports delay (≥36 h no scan / failed delivery / manual flag) |
 | `{$carrierStatusText}` | track-trace-delay | string | Human carrier-status line (e.g. "Sendung verzögert sich") |
 | `{$carrierStatusUpdatedAt}` | track-trace-delay | datetime | Timestamp of latest DHL status |
