@@ -41,6 +41,7 @@ Which JTL event fires which template, and any conditional logic the dev team mus
 | `account-deletion.html` | DSGVO Art. 17 deletion completed server-side | Send AFTER deletion job finishes; pass `{$kontoErstelltAm}` from the soon-to-be-deleted record |
 | `newsletter-activation.html` | Customer submits newsletter subscription form | DOI per Art. 6 Abs. 1 lit. a DSGVO + § 7 Abs. 2 Nr. 3 UWG. Subscription is only legally valid AFTER the customer clicks `{$newsletterConfirmURL}`. Token expires 24 h; unconfirmed subscriptions are dropped (Art. 17). |
 | `back-in-stock-doi.html` | Customer submits "Benachrichtigen, sobald wieder verfügbar" form on a stock-item product page | DOI per Art. 6 Abs. 1 lit. a DSGVO + § 7 Abs. 2 Nr. 3 UWG. **Restrict trigger to non-custom products only** — custom-engraved items are made-to-order, not stocked. Token expires 24 h; unconfirmed subscriptions are dropped. After the actual back-in-stock notification fires, drop the email/product binding (one-shot use). |
+| `contact-form-confirmation.html` | Customer submits the general "Kontakt" form on the shop | Send confirmation only; the actual reply is written manually by the support team. Distinct from `product-question-confirmation` (different form, different trigger). |
 
 ---
 

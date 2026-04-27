@@ -19,6 +19,9 @@ Every `{$variable}` referenced across the 17 templates. Types and example values
 | `{$newsletterSubscribeURL}` | order-confirmation, delivered, review-request, review-confirmation | Double-opt-in subscribe endpoint (see TRIGGERS.md) | `https://edelstahl-tuerklingel.de/newsletter?action=subscribe` |
 | `{$newsletterConfirmURL}` | newsletter-activation | DOI confirmation link with single-use token (24-hour expiry) | `https://edelstahl-tuerklingel.de/newsletter?bestaetigung=…` |
 | `{$backInStockConfirmURL}` | back-in-stock-doi | DOI confirmation link for "notify me when available" subscription (24-hour expiry, single-use) | `https://edelstahl-tuerklingel.de/wieder-verfuegbar?bestaetigung=…` |
+| `{$kontaktReferenz}` | contact-form-confirmation | Auto-generated reference number for the contact submission | `KO-2024-12345` |
+| `{$kontaktFormularBetreff}` | contact-form-confirmation | Subject / dropdown value the customer selected on the form | `Allgemeine Frage` |
+| `{$kontaktFormularNachricht}` | contact-form-confirmation | Message body the customer typed (HTML-escaped, `nl2br` for line breaks) | (free-text) |
 | `{$unsubscribeURL}` | (CAN-SPAM compliance, every marketing block) | Unsubscribe link for that specific marketing context | dynamic per-email |
 | `{$abmeldeURL}` | order-confirmation, gutschein, review-request | Master "E-Mails abbestellen" link in footer | `https://edelstahl-tuerklingel.de/jtl.php?abmelden=1&token=…` |
 
