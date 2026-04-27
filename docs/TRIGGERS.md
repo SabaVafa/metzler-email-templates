@@ -39,6 +39,7 @@ Which JTL event fires which template, and any conditional logic the dev team mus
 | `product-question-confirmation.html` | Customer submits product Q form | Send confirmation only; the actual answer is sent manually |
 | `password-reset.html` | "Passwort vergessen?" form submitted | Token validity 60 min |
 | `account-deletion.html` | DSGVO Art. 17 deletion completed server-side | Send AFTER deletion job finishes; pass `{$kontoErstelltAm}` from the soon-to-be-deleted record |
+| `newsletter-activation.html` | Customer submits newsletter subscription form | DOI per Art. 6 Abs. 1 lit. a DSGVO + § 7 Abs. 2 Nr. 3 UWG. Subscription is only legally valid AFTER the customer clicks `{$newsletterConfirmURL}`. Token expires 24 h; unconfirmed subscriptions are dropped (Art. 17). |
 
 ---
 
