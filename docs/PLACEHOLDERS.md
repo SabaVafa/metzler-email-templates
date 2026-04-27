@@ -23,6 +23,8 @@ Every `{$variable}` referenced across the 17 templates. Types and example values
 | `{$kontaktFormularBetreff}` | contact-form-confirmation | Subject / dropdown value the customer selected on the form | `Allgemeine Frage` |
 | `{$kontaktFormularNachricht}` | contact-form-confirmation | Message body the customer typed (HTML-escaped, `nl2br` for line breaks) | (free-text) |
 | `{$passwortFestlegenURL}` | account-created-by-admin | One-time password-set link with single-use token (24-hour expiry); customer's account is created without a password and this link sets it for the first time | `https://edelstahl-tuerklingel.de/passwort-festlegen?token=…` |
+| `{$kundengruppeName}` | customer-group-assignment | Display name of the new group (used inline in the hero subtitle and the meta card) | `Wholesale` / `VIP` / `Handwerker` |
+| `{$kundengruppe}` | customer-group-assignment | Group identifier — drives the Smarty conditional in the "Was sich für Sie ändert" section | `b2b` / `vip` / `installer` / *(other)* |
 | `{$unsubscribeURL}` | (CAN-SPAM compliance, every marketing block) | Unsubscribe link for that specific marketing context | dynamic per-email |
 | `{$abmeldeURL}` | order-confirmation, gutschein, review-request | Master "E-Mails abbestellen" link in footer | `https://edelstahl-tuerklingel.de/jtl.php?abmelden=1&token=…` |
 
