@@ -40,6 +40,7 @@ metzler-email-templates/
 | [`docs/PLACEHOLDERS.md`](docs/PLACEHOLDERS.md) | Every `{$smartyVar}` used across the templates, with type + example value |
 | [`docs/TRIGGERS.md`](docs/TRIGGERS.md) | Which JTL trigger fires which template + conditional rules (custom vs. non-custom, opt-in gates) |
 | [`docs/LEGAL.md`](docs/LEGAL.md) | PDF attachments, §312f / §356a / §357 BGB, §14 UStG, DSGVO opt-ins, retention |
+| [`docs/COPY-RULES.md`](docs/COPY-RULES.md) | Tone, banned phrases, canonical blocks, hero patterns — single source of truth for any future copy work |
 | [`docs/ASSETS.md`](docs/ASSETS.md) | Every image referenced, grouped by template — your find/replace checklist for production CDN |
 | [`docs/OPEN-ITEMS.md`](docs/OPEN-ITEMS.md) | Pending items requiring decisions (street address, HRB, opt-in flow, etc.) |
 
