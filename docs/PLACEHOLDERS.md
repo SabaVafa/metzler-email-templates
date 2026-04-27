@@ -22,6 +22,7 @@ Every `{$variable}` referenced across the 17 templates. Types and example values
 | `{$kontaktReferenz}` | contact-form-confirmation | Auto-generated reference number for the contact submission | `KO-2024-12345` |
 | `{$kontaktFormularBetreff}` | contact-form-confirmation | Subject / dropdown value the customer selected on the form | `Allgemeine Frage` |
 | `{$kontaktFormularNachricht}` | contact-form-confirmation | Message body the customer typed (HTML-escaped, `nl2br` for line breaks) | (free-text) |
+| `{$passwortFestlegenURL}` | account-created-by-admin | One-time password-set link with single-use token (24-hour expiry); customer's account is created without a password and this link sets it for the first time | `https://edelstahl-tuerklingel.de/passwort-festlegen?token=…` |
 | `{$unsubscribeURL}` | (CAN-SPAM compliance, every marketing block) | Unsubscribe link for that specific marketing context | dynamic per-email |
 | `{$abmeldeURL}` | order-confirmation, gutschein, review-request | Master "E-Mails abbestellen" link in footer | `https://edelstahl-tuerklingel.de/jtl.php?abmelden=1&token=…` |
 
