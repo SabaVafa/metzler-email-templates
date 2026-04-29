@@ -4,6 +4,25 @@ Paste this at the start of a new session, then say *"continue from this handoff 
 
 ---
 
+## ⚠️ Priority #1: Consistency
+
+**Consistency across all templates is the single most important constraint.** It outranks individual-template polish, novelty, and personal preference. Every decision you make in a new template must be checked against the existing 22 templates first.
+
+What this means in practice:
+
+- **Reuse canonical blocks unchanged** — support block, footer, newsletter block, tracker labels. Never tweak them in one template only; if you have a reason to change, change them everywhere in a coordinated pass.
+- **Reuse established phrasings** — *"Wir antworten Ihnen persönlich"*, *"Was passiert als nächstes?"*, *"Sie haben sich nicht angemeldet?"*, *"Tracking-Link"* (not *"Sendungsverfolgung"*), *"Lieferung"* (not *"Geliefert"*) — these are project standards. Inventing synonyms breaks the journey.
+- **Reuse hero patterns** — `[noun] ist [state]` for confirmations, gratitude pivot for thank-yous, welcome-pivot for new-customer moments. Don't introduce a fourth pattern.
+- **Reuse design tokens** — colors, type stack, spacing, button styles, mobile breakpoint. The design system is frozen. New templates inherit it; they don't propose new tokens.
+- **Reuse section structures** — security-fallback section in confirmation/security emails, echo-back card in customer-message emails, meta card in transactional emails. Same patterns, same HTML structure.
+- **Backport new patterns to siblings** — if a new template surfaces a better pattern (e.g., the *"Eine weitere Verwendung Ihrer E-Mail-Adresse findet nicht statt"* trust signal in `back-in-stock-doi`), check whether it should also apply to its siblings (`newsletter-activation`, `registration-verify`). Coordinate updates.
+- **Audit cross-email when a small fix lands** — when fixing a banned phrase in one template, grep all 22 for the same phrase. We caught two of these in late audit passes (the *"ehrlichste"* in `review-confirmation` and `review-request`); both should have been caught earlier.
+- **Consistency over polish on edge cases** — if a phrasing has been audited and accepted across the journey, don't re-litigate it in a new template just because something marginally better exists. The customer experiences all 22 emails as one cohesive voice; one outlier breaks the spell.
+
+**The customer reads these emails as a single ongoing conversation with one brand.** Inconsistency makes the brand feel sloppy; consistency makes it feel quietly premium. When in doubt, match the existing pattern.
+
+---
+
 ## Where the project stands
 
 **22 customer-facing templates done** — all 9 active JTL-native customer-facing slots covered, plus 5 custom templates for the brand journey, plus 8 supplementary (DOI, security, contact, etc.). All polished against the established copy rules (audited end-to-end, including a redundancy + banned-phrase pass).
