@@ -474,10 +474,10 @@
 
                 <div class="hero-badge">Zahlung</div>
 
-                <h1 class="hero-title">Ihre Zahlung ist noch nicht eingegangen.</h1>
+                <h1 class="hero-title">Eine kurze Erinnerung an Ihre Zahlung.</h1>
 
                 <p class="hero-subtitle">
-                  Sie haben Vorkasse als Zahlungsart gew&auml;hlt. Sobald Ihre &Uuml;berweisung bei uns eingeht, beginnen wir mit der Fertigung. Sollten Sie den Betrag bereits &uuml;berwiesen haben, hat sich unsere Erinnerung &uuml;berschnitten &mdash; bitte nicht erneut &uuml;berweisen.
+                  Zu Ihrer Bestellung haben wir noch keinen Zahlungseingang erhalten. Sobald Ihre Zahlung bei uns ist, &uuml;bergeben wir Ihre Bestellung unserer Werkstatt.
                 </p>
 
                 <!-- Meta + CTA stack -->
@@ -524,14 +524,14 @@
                       </div>
                       <!--[if mso]>
                       <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"
-                        href="{$bestellungURL}" style="height:44px;v-text-anchor:middle;width:185px;" arcsize="11%"
+                        href="{$paymentURL}" style="height:44px;v-text-anchor:middle;width:160px;" arcsize="11%"
                         fillcolor="#015253" stroke="f">
                         <w:anchorlock/>
-                        <center style="color:#ffffff;font-family:'Montserrat',Arial,sans-serif;font-size:14px;font-weight:600;">Bestellung ansehen</center>
+                        <center style="color:#ffffff;font-family:'Montserrat',Arial,sans-serif;font-size:14px;font-weight:600;">Jetzt bezahlen</center>
                       </v:roundrect>
                       <![endif]-->
                       <!--[if !mso]><!-->
-                      <a href="{$bestellungURL}" target="_blank" class="btn-primary" style="display:inline-block; background-color:#015253; color:#ffffff; font-family:'Montserrat','Helvetica Neue',Arial,sans-serif; font-size:14px; font-weight:600; letter-spacing:0.5px; padding:13px 30px; border-radius:5px; text-decoration:none; text-align:center;">Bestellung ansehen</a>
+                      <a href="{$paymentURL}" target="_blank" class="btn-primary" style="display:inline-block; background-color:#015253; color:#ffffff; font-family:'Montserrat','Helvetica Neue',Arial,sans-serif; font-size:14px; font-weight:600; letter-spacing:0.5px; padding:13px 30px; border-radius:5px; text-decoration:none; text-align:center;">Jetzt bezahlen</a>
                       <!--<![endif]-->
                     </td>
                   </tr>
@@ -558,7 +558,7 @@
                 -->
                 <div class="payment-card">
                   <div class="payment-title">Vorkasse &mdash; &Uuml;berweisung</div>
-                  <p class="payment-subtitle">Bitte mit dem unten stehenden Verwendungszweck &uuml;berweisen, damit wir Ihre Zahlung sicher zuordnen.</p>
+                  <p class="payment-subtitle">Bitte verwenden Sie den unten stehenden Verwendungszweck, damit wir Ihre Zahlung sicher zuordnen k&ouml;nnen.</p>
 
                   <table class="bank-table" cellpadding="0" cellspacing="0" role="presentation">
                     <tr>
@@ -567,15 +567,15 @@
                     </tr>
                     <tr>
                       <td class="bank-td-label">IBAN</td>
-                      <td class="bank-td-value">DE00 0000 0000 0000 0000 00</td>
+                      <td class="bank-td-value">DE09 6439 1200 0308 5077 00</td>
                     </tr>
                     <tr>
                       <td class="bank-td-label">BIC</td>
-                      <td class="bank-td-value">XXXXDEXX</td>
+                      <td class="bank-td-value">GENODES1MTZ</td>
                     </tr>
                     <tr>
                       <td class="bank-td-label">Bank</td>
-                      <td class="bank-td-value">Volksbank Reutlingen</td>
+                      <td class="bank-td-value">Volksbank Ermstal-Alb eG</td>
                     </tr>
                     <tr>
                       <td class="bank-td-label">Betrag</td>
@@ -585,8 +585,8 @@
 
                   <div class="ref-box">
                     <div class="ref-label">Verwendungszweck</div>
-                    <div class="ref-code">12345</div>
-                    <p class="ref-hint">Bitte exakt so angeben &mdash; ohne Zusatztext oder Bestellnummer-Pr&auml;fix.</p>
+                    <div class="ref-code">C7SOFA7EWM</div>
+                    <p class="ref-hint">Bitte exakt so angeben &mdash; ohne weitere Zus&auml;tze.</p>
                   </div>
                 </div>
 
@@ -615,7 +615,7 @@
                       <div class="step-num">2</div>
                     </td>
                     <td class="step-text">
-                      Wir pr&uuml;fen den Eingang t&auml;glich und melden uns, sobald Ihre Zahlung bei uns ist.
+                      Wir melden uns mit der Zahlungsbest&auml;tigung.
                     </td>
                   </tr>
                   <tr><td class="step-row-spacer" colspan="2">&nbsp;</td></tr>
@@ -624,7 +624,7 @@
                       <div class="step-num">3</div>
                     </td>
                     <td class="step-text">
-                      Anschlie&szlig;end &uuml;bergeben wir Ihre Bestellung der Werkstatt.
+                      Anschlie&szlig;end &uuml;bergeben wir Ihre Bestellung unserer Werkstatt.
                     </td>
                   </tr>
                 </table>
