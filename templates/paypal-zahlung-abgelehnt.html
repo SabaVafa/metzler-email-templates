@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="x-apple-disable-message-reformatting" />
-  <title>Zahlung nicht möglich – Metzler GmbH</title>
+  <title>PayPal-Zahlung abgelehnt – Metzler GmbH</title>
   <!--[if mso]>
   <noscript>
     <xml>
@@ -357,7 +357,7 @@
 
 <!-- Hidden preheader text -->
 <div class="preheader">
-  Amazon Pay hat Ihre Zahlung abgelehnt &ndash; lassen Sie uns kurz eine andere Zahlungsart vereinbaren.&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+  PayPal hat Ihre Zahlung abgelehnt &ndash; gern vereinbaren wir mit Ihnen eine andere Zahlungsart.&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
 </div>
 
 <!-- ═══════════════════════════════════════════════ -->
@@ -414,7 +414,7 @@
                 <h1 class="hero-title">Ihre Zahlung ist nicht m&ouml;glich.</h1>
 
                 <p class="hero-subtitle">
-                  Amazon Pay hat die Zahlung zu Ihrer Bestellung abgelehnt. Gern vereinbaren wir mit Ihnen eine andere Zahlungsart &mdash; Ihre Bestellung halten wir bis dahin f&uuml;r Sie bereit.
+                  PayPal hat die Zahlung zu Ihrer Bestellung abgelehnt. Gern vereinbaren wir mit Ihnen eine andere Zahlungsart &mdash; Ihre Bestellung halten wir bis dahin f&uuml;r Sie bereit.
                 </p>
 
                 <!-- Meta + CTA stack -->
@@ -427,7 +427,7 @@
                       <!--
                         DEV (JTL-Shop 5): replace mock values below with
                           Datum       = {$smarty.now|date_format:"%d. %B %Y"}
-                          Zahlungsart = Amazon Pay (hardcoded — trigger context)
+                          Zahlungsart = PayPal (hardcoded — trigger context)
                       -->
                       <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
                         <tr>
@@ -441,7 +441,7 @@
                           <td class="meta-col" style="width:50%; vertical-align:middle;">
                             <div style="background-color:#ffffff; border:1px solid #e8ece8; border-radius:4px; padding:12px 16px;">
                               <div class="meta-label" style="margin-bottom:4px;">Zahlungsart</div>
-                              <div class="meta-value-light">Amazon Pay</div>
+                              <div class="meta-value-light">PayPal</div>
                             </div>
                           </td>
                         </tr>
@@ -501,7 +501,7 @@
                       <div class="step-num">2</div>
                     </td>
                     <td class="step-text">
-                      Wir schlagen Ihnen eine passende Zahlungsart vor &mdash; Vorkasse, Rechnungskauf oder PayPal.
+                      Wir schlagen Ihnen eine passende Zahlungsart vor &mdash; Vorkasse, SEPA-Lastschrift oder Kreditkarte.
                     </td>
                   </tr>
                   <tr><td class="step-row-spacer" colspan="2">&nbsp;</td></tr>
@@ -526,7 +526,7 @@
                 {if isset($Bestellung->Positionen) && $Bestellung->Positionen|@count > 0}
                   ...
                 {/if}
-              so the section degrades gracefully if the Amazon Pay plugin
+              so the section degrades gracefully if the PayPal plugin
               does not expose order positions in its Smarty scope.
             -->
             <tr>
