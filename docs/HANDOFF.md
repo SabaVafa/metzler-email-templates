@@ -25,7 +25,10 @@ What this means in practice:
 
 ## Where the project stands
 
-**22 customer-facing templates done** — all 9 active JTL-native customer-facing slots covered, plus 5 custom templates for the brand journey, plus 8 supplementary (DOI, security, contact, etc.). All polished against the established copy rules (audited end-to-end, including a redundancy + banned-phrase pass).
+**28 templates shipped** — phase 1 (22 customer-facing) + phase 2 (6 plugin templates) both complete.
+
+- **Phase 1 — 22 customer-facing**: all 9 active JTL-native customer-facing slots covered, plus 5 custom templates for the brand journey, plus 8 supplementary (DOI, security, contact, etc.). All polished against the established copy rules (audited end-to-end, including a redundancy + banned-phrase pass).
+- **Phase 2 — 6 plugin templates**: Amazon Pay Soft-Decline / Hard-Decline / Info (staff alert) · Zahlungs-Erinnerung · Zahlungsinformationen Vorkasse · PayPal Zahlung abgelehnt. Cluster-consistent design tokens (amber for payment-attention, red for staff alerts, green for confirmations), shared Bankdaten card across order-confirmation + zahlungs-erinnerung + zahlungsinformationen-vorkasse, mailto-deep-link CTAs for Hard-Decline + PayPal, formal-warm Manufaktur subtitles (*"Gern vereinbaren wir mit Ihnen … — Ihre Bestellung halten wir bis dahin für Sie bereit"*).
 
 ### Templates inventory
 
@@ -54,6 +57,14 @@ What this means in practice:
 20. `contact-form-confirmation` — general "Kontakt" form
 21. `account-created-by-admin` — admin-created account (B2B, phone orders)
 22. `customer-group-assignment` — customer moved to new group
+
+**Plug-in templates (6) — phase 2**
+P1. `amazon-pay-soft-decline` — temporary Amazon Pay auth failure → Amazon-Pay-Übersicht retry
+P2. `amazon-pay-hard-decline` — permanent Amazon Pay refusal → mailto support for alternative
+P3. `amazon-pay-info` — internal staff alert (red badge, JTL-Backend + Seller Central two-button row, *not* customer-facing)
+P4. `zahlungs-erinnerung` — Vorkasse payment reminder, "Jetzt bezahlen" CTA + Bankdaten card
+P5. `zahlungsinformationen-vorkasse` — first informational delivery of bank details (slot is JTL-labeled "Rechnungskauf" but Metzler uses for Vorkasse)
+P6. `paypal-zahlung-abgelehnt` — PayPal refused → mailto support for alternative (sibling of P2)
 
 ### Files / structure
 
@@ -185,34 +196,44 @@ Colors `#015253` teal, `#01292A` footer, `#f2f4f2` page, `#f7f9f7` hero, `#fffff
 
 ---
 
-## Next phase: plugin templates
+## Phase 2: plugin templates — DONE
 
-JTL admin has a separate **Plug-in Templates** tab (distinct from system templates). Per screenshot of the Metzler shop, the plugin slots are:
+The user-selected scope for phase 2 was the **payment-issue cluster** (6 templates). Shipped as commits 1eb498a → ef6944e on `main`. Full plugin slot list with current status:
 
-| # | Plugin template | Active? |
-|---|---|---|
-| 1 | Bestandswarnung Benachrichtigung | ✓ active *(we covered the DOI side; this is the actual notify-when-back-in-stock fire — different template)* |
-| 2 | Amazon Pay Soft-Decline | ✓ active |
-| 3 | Amazon Pay Hard-Decline | ✓ active |
-| 4 | Amazon Pay Info | ✓ active |
-| 5 | Amazon Pay Abo Reminder | ✓ active |
-| 6 | Amazon Pay Abo Start | ✓ active |
-| 7 | Amazon Pay Abo Ende | ✓ active |
-| 8 | Zahlungs-Erinnerungsemail | ✓ active |
-| 9 | Rechnungskauf — Zahlungsinformationen | ✓ active |
-| 10 | PayPal Zahlung abgelehnt | ✓ active |
-| 11 | Abandoned Cart — Erste Erinnerung | ✓ active |
-| 12 | Abandoned Cart — Zweite Erinnerung | ✓ active |
-| 13 | Abandoned Cart — Letzte Erinnerung | ✓ active |
-| 14 | General review confirmation mail template | ✗ inactive |
+| # | Plugin template | Active? | Status |
+|---|---|---|---|
+| 1 | Bestandswarnung Benachrichtigung | ✓ active | *not in scope this round* |
+| 2 | Amazon Pay Soft-Decline | ✓ active | ✅ shipped (P1) |
+| 3 | Amazon Pay Hard-Decline | ✓ active | ✅ shipped (P2) |
+| 4 | Amazon Pay Info | ✓ active | ✅ shipped (P3 — staff alert) |
+| 5 | Amazon Pay Abo Reminder | ✓ active | *not in scope* |
+| 6 | Amazon Pay Abo Start | ✓ active | *not in scope* |
+| 7 | Amazon Pay Abo Ende | ✓ active | *not in scope* |
+| 8 | Zahlungs-Erinnerungsemail | ✓ active | ✅ shipped (P4) |
+| 9 | Rechnungskauf — Zahlungsinformationen | ✓ active | ✅ shipped (P5 — Metzler uses this slot for Vorkasse-Zahlungsinformationen, file named `zahlungsinformationen-vorkasse.html`) |
+| 10 | PayPal Zahlung abgelehnt | ✓ active | ✅ shipped (P6) |
+| 11 | Abandoned Cart — Erste Erinnerung | ✓ active | *not in scope* |
+| 12 | Abandoned Cart — Zweite Erinnerung | ✓ active | *not in scope* |
+| 13 | Abandoned Cart — Letzte Erinnerung | ✓ active | *not in scope* |
+| 14 | General review confirmation mail template | ✗ inactive | *skip unless activated* |
 
-**13 of 14 are active and need brand-system templates.** Suggested order (by customer-impact):
+### Future phases (when ready)
+
+7 plugin slots remain unstarted. Suggested order (by customer-impact):
 
 1. **Abandoned Cart** trio (3 templates) — high-volume marketing, big revenue lever, must feel premium not pushy
-2. **Payment-issue cluster** (5 templates) — Amazon Pay Soft/Hard-Decline, PayPal abgelehnt, Zahlungs-Erinnerung, Rechnungskauf — high anxiety potential, calm confident voice critical
-3. **Amazon Pay Abo lifecycle** (3 templates: Reminder, Start, Ende) — subscription handling
-4. **Amazon Pay Info** + **Bestandswarnung Benachrichtigung** (the actual fire, after DOI) (2 templates)
-5. **General review confirmation** (inactive — skip unless activated)
+2. **Amazon Pay Abo lifecycle** (3 templates: Reminder, Start, Ende) — subscription handling
+3. **Bestandswarnung Benachrichtigung** — the actual back-in-stock fire (after DOI)
+
+### Phase 2 design decisions worth preserving
+
+- **Three-palette badge system** — green (`#eaf3ea` / `#2d6e2d`) for confirmation/informational, amber (`#fdf3e3` / `#8a5a00`) for payment-attention, red (`#fde8e8` / `#a91e1e`) for internal staff alerts. Do not introduce additional palettes without explicit reason.
+- **Bankdaten card structure** identical across `order-confirmation`, `zahlungs-erinnerung`, `zahlungsinformationen-vorkasse`. Title *"Vorkasse — Überweisung"*, active-voice subtitle, row order Empfänger / IBAN / BIC / Bank / Betrag, ref-hint *"Bitte exakt so angeben — ohne weitere Zusätze."* Real bank data: Volksbank Ermstal-Alb eG · DE09 6439 1200 0308 5077 00 · GENODES1MTZ.
+- **Mailto deep-link pattern** for Hard-Decline + PayPal: pre-filled subject *"Andere Zahlungsart für Bestellung #{Bestellnr}"*. Routes to `info@edelstahl-tuerklingel.de`.
+- **Formal-warm Manufaktur subtitle** for payment-failure context: *"Gern vereinbaren wir mit Ihnen eine andere Zahlungsart — Ihre Bestellung halten wir bis dahin für Sie bereit."* Replaces earlier draft's *"Damit wir Ihre Bestellung trotzdem fertigen können"* (was off-tone — *"trotzdem"* drew attention to failure, *"Damit wir können"* was self-focused).
+- **Step 2 alternatives** for PayPal-decline: *"Vorkasse, SEPA-Lastschrift oder Kreditkarte"* (not *"Vorkasse, Rechnungskauf oder PayPal"* — PayPal can't be the alternative when PayPal is what just failed).
+- **No personalized greeting** — none of the 28 templates open with *"Guten Tag {$Kunde->...}"*. Cluster convention is to open with the action.
+- **Conditional `{if isset($Bestellung->Positionen)}` wrap** as a DEV-comment hint around the item-loop section in plugin templates, since some plugin Smarty scopes may not expose Positionen.
 
 ---
 
@@ -244,11 +265,16 @@ JTL admin has a separate **Plug-in Templates** tab (distinct from system templat
 
 1. Open Claude Code in the project directory
 2. Paste this handoff doc into the first message
-3. Add: *"continue from this handoff under all listed rules. Start phase 2 — plugin templates. Begin with the Abandoned Cart trio (highest customer impact)."*
+3. Pick whichever pending phase is next:
+   - **Abandoned Cart trio** (3 templates) — highest revenue lever
+   - **Amazon Pay Abo lifecycle** (3 templates) — subscription handling
+   - **Bestandswarnung Benachrichtigung** — the actual back-in-stock fire
+
+Add: *"continue from this handoff under all listed rules. Start the [chosen phase]."*
 
 The new session will have full context to:
 - Apply `COPY-RULES.md` automatically
-- Use canonical blocks unchanged
-- Match design system frozen tokens
-- Inherit hero patterns + tone overrides
+- Use canonical blocks unchanged (support, footer, newsletter, tracker)
+- Match design system frozen tokens (3-palette badge, Bankdaten card structure, mailto deep-link pattern)
+- Inherit hero patterns + tone overrides (`[noun] ist [state]`, formal-warm Manufaktur, no apology-bait, no "trotzdem" framing)
 - Push to GitHub after every commit
