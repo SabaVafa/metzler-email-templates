@@ -99,6 +99,16 @@
 
     .internal-note strong { color: #444; }
 
+    /* ── BUTTON ROW (two equal-width buttons side-by-side, stack on mobile) ── */
+    .btn-row {
+      display: block !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+      text-align: center !important;
+      padding-left: 8px !important;
+      padding-right: 8px !important;
+    }
+
     /* ── META TABLE (operational, single column for staff) ── */
     .ops-meta-table {
       width: 100%;
@@ -389,6 +399,7 @@
 
       .btn-primary { display: block !important; width: 100% !important; text-align: center !important; box-sizing: border-box !important; }
       .btn-outline { display: block !important; width: 100% !important; text-align: center !important; box-sizing: border-box !important; }
+      .btn-col { display: block !important; width: 100% !important; padding: 0 0 10px 0 !important; }
       .meta-col { display: block !important; width: 100% !important; padding-bottom: 10px !important; }
       .meta-col-spacer { display: none !important; }
       .order-table-wrap { overflow-x: auto !important; -webkit-overflow-scrolling: touch; }
@@ -500,32 +511,30 @@
                 -->
                 <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="margin-top:22px;">
                   <tr>
-                    <td align="center" style="padding-bottom:10px;">
+                    <td class="btn-col" style="width:50%; padding-right:6px; vertical-align:top;">
                       <!--[if mso]>
                       <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"
-                        href="https://[SHOP-DOMAIN]/admin/index.php?s=bestellungen&amp;kBestellung={$kBestellung}" style="height:44px;v-text-anchor:middle;width:240px;" arcsize="11%"
+                        href="https://[SHOP-DOMAIN]/admin/index.php?s=bestellungen&amp;kBestellung={$kBestellung}" style="height:44px;v-text-anchor:middle;width:230px;" arcsize="11%"
                         fillcolor="#015253" stroke="f">
                         <w:anchorlock/>
                         <center style="color:#ffffff;font-family:'Montserrat',Arial,sans-serif;font-size:14px;font-weight:600;">Bestellung im Backend &ouml;ffnen</center>
                       </v:roundrect>
                       <![endif]-->
                       <!--[if !mso]><!-->
-                      <a href="https://[SHOP-DOMAIN]/admin/index.php?s=bestellungen&amp;kBestellung={$kBestellung}" target="_blank" class="btn-primary" style="display:inline-block; background-color:#015253; color:#ffffff; font-family:'Montserrat','Helvetica Neue',Arial,sans-serif; font-size:14px; font-weight:600; letter-spacing:0.5px; padding:13px 30px; border-radius:5px; text-decoration:none; text-align:center;">Bestellung im Backend &ouml;ffnen</a>
+                      <a href="https://[SHOP-DOMAIN]/admin/index.php?s=bestellungen&amp;kBestellung={$kBestellung}" target="_blank" class="btn-primary btn-row" style="display:block; width:100%; box-sizing:border-box; background-color:#015253; color:#ffffff; font-family:'Montserrat','Helvetica Neue',Arial,sans-serif; font-size:14px; font-weight:600; letter-spacing:0.5px; padding:13px 8px; border-radius:5px; text-decoration:none; text-align:center;">Bestellung im Backend &ouml;ffnen</a>
                       <!--<![endif]-->
                     </td>
-                  </tr>
-                  <tr>
-                    <td align="center">
+                    <td class="btn-col" style="width:50%; padding-left:6px; vertical-align:top;">
                       <!--[if mso]>
                       <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"
-                        href="https://sellercentral-europe.amazon.com/" style="height:40px;v-text-anchor:middle;width:200px;" arcsize="13%"
+                        href="https://sellercentral-europe.amazon.com/" style="height:44px;v-text-anchor:middle;width:230px;" arcsize="11%"
                         fillcolor="#ffffff" strokecolor="#015253">
                         <w:anchorlock/>
                         <center style="color:#015253;font-family:'Montserrat',Arial,sans-serif;font-size:14px;font-weight:600;">Bei Amazon Pay pr&uuml;fen</center>
                       </v:roundrect>
                       <![endif]-->
                       <!--[if !mso]><!-->
-                      <a href="https://sellercentral-europe.amazon.com/" target="_blank" class="btn-outline">Bei Amazon Pay pr&uuml;fen</a>
+                      <a href="https://sellercentral-europe.amazon.com/" target="_blank" class="btn-outline btn-row" style="display:block; width:100%; box-sizing:border-box; border:1.5px solid #015253; color:#015253; font-family:'Montserrat','Helvetica Neue',Arial,sans-serif; font-size:14px; font-weight:600; letter-spacing:0.5px; padding:11.5px 8px; border-radius:5px; text-decoration:none; text-align:center;">Bei Amazon Pay pr&uuml;fen</a>
                       <!--<![endif]-->
                     </td>
                   </tr>
