@@ -48,18 +48,110 @@ Paste this at the start of a new session, then say *"continue from this handoff 
 
 ### Single source of truth for copy
 
-`docs/COPY-RULES.md` captures everything from the audit pass:
-- Voice (formal Sie, premium-Manufaktur register)
-- 14 banned phrases
-- Translation tells with replacements
-- Behördendeutsch / passive constructions to remove
-- Hero stack rule (badge / title / CTA must vary)
-- `[noun] ist [state]` hero pattern
-- Canonical blocks (newsletter, support, tracker, footer)
-- Tone-by-context overrides (delay, joy, security, cancellation, account)
-- 10-point checklist for any new template
+`docs/COPY-RULES.md` is the canonical document. Read it before designing or editing any template. The most important rules — inlined here so this handoff stands alone:
 
-**All new templates must inherit `COPY-RULES.md` automatically.**
+#### Voice & register
+- **Formal Sie / Ihre / Ihnen** — capitalized, throughout
+- **Premium artisan-Manufaktur** zone (Manufactum / Breuninger), not Zalando-casual
+- **Calm, confident, factual** — never marketing-flair, never SaaS-startup-y
+- **Native German** — no translation flavor, no anglicisms
+
+#### Banned phrases (hard rules — never use)
+1. *"Vielen Dank für Ihre Geduld"*
+2. *"Wir freuen uns, Sie als Kundin / Kunde…"*
+3. *"Wir arbeiten hart daran"*
+4. *"exklusiv für Sie"*
+5. *"Ihre ehrliche Meinung zählt"* (and *"ehrlichste"* / *"ehrliche"* in body copy)
+6. *"wir hoffen…"*
+7. *"in der Regel"* → use *"meist"*
+8. *"nichts weiter tun"*
+9. *"als wir ursprünglich geplant hatten"* → use *"als gedacht"*
+10. *"Das ist X. Das ist Y."* (AI-parallelism)
+11. *"nicht nur X sondern Y"*
+12. *"Ihre Meinung zählt"* (banned-list adjacent)
+13. *"freiwillig & kostenlos"*
+14. *"Jetzt anmelden"* (newsletter context — use *"Newsletter abonnieren"*)
+
+#### Translation tells to remove
+- `&` outside brand names → *"und"*
+- *"hochwertig"* / *"high-quality"* → drop entirely (brand context implies quality)
+- *"in Echtzeit"* → *"jederzeit"*
+- *"gültig für 60 Minuten"* → *"60 Minuten gültig"*
+- *"Live verfolgen"* → *"Sendung verfolgen"*
+- *"Plus ein Dankeschön"* → drop *"plus"*
+- *"startklar"* → *"eingerichtet"* / *"bereit"*
+- *"kostenlos"* on free items → *"als Dankeschön"* or drop
+- *"aus der Praxis"* → drop entirely (filler)
+- Stacking adjectives → split or simplify
+- Compound-noun stacks → split into clauses
+- *"per E-Mail"* / *"dieser E-Mail"* inside an email → drop (channel is implicit)
+
+#### Behördendeutsch / passive → active replacements
+- *"Die Zustellung erfolgt"* → *"Voraussichtlich erreicht es Sie"*
+- *"liegt uns / Ihrem Team vor"* → *"Wir bearbeiten / Unser Team sieht sich … an"*
+- *"wird … geprüft / bearbeitet"* → *"wir prüfen / wir bearbeiten"*
+- *"werden erstattet"* → *"Sie erhalten … zurück"*
+- *"einen Hinweis beilegen"* → *"vermerken Sie … auf …"*
+- *"Wir informieren Sie aktiv"* → *"Wir melden uns rechtzeitig"*
+- *"ist nicht mehr möglich"* → *"Sie können … nicht mehr"*
+- *"garantiert"* → *"sorgt für"* / *"bringt"*
+
+#### Hero stack rule
+Badge + Title + CTA must NOT all repeat the same action verb. Vary register: badge confirms, title pivots to gratitude or welcome, CTA is the verb. *Examples in COPY-RULES.md.*
+
+#### Hero title pattern (confirmation emails)
+`[noun] ist [state]`:
+- *"Ihre Bestellung ist eingegangen."*
+- *"Ihre Zahlung ist eingegangen."*
+- *"Ihr Paket ist angekommen."*
+- *"Ihr Widerruf ist eingegangen."*
+- *"Ihr Kundenkonto ist eingerichtet."*
+
+#### Customer-perspective active voice
+Frame from customer's POV, not the system's:
+- *"Sie erhalten 208,90 € zurück"* (not *"208,90 € werden erstattet"*)
+- *"Wir prüfen Ihre Bewertung"* (not *"Ihre Bewertung wird geprüft"*)
+
+#### Drop admin preambles in security/confirmation emails
+The customer just clicked the action — they know they did. Action-first.
+- ❌ *"Wir haben eine Anfrage zum Zurücksetzen erhalten"*
+- ✅ *"Setzen Sie Ihr Passwort über den Button unten neu."*
+
+#### Tone-by-context overrides
+- **Delay (in-house)** — calm, reframe as quality, give next-touchpoint promise, no apology-bait
+- **Carrier delay (DHL)** — no apology on Metzler's behalf, attribute to carrier, link to their tracking
+- **Cancellation / Widerruf** — neutral, respectful, active voice for refund (*"Sie erhalten X zurück"*)
+- **Account deletion** — calm, customer-perspective for what changed, warm welcome-back invitation
+- **Joy moments** — concrete value-led titles where appropriate
+- **Security emails (verify, reset)** — action-first, no admin preamble, always include security-fallback section *"Sie haben sich nicht angemeldet?"* / *"Sie haben keine Anfrage gestellt?"*
+- **Admin-initiated lifecycle (account-by-admin, group-assignment)** — anchor brand explicitly, security-fallback uses *"melden Sie sich"* (active path, not *"ignorieren Sie"*)
+
+#### Punctuation & typography
+- Em-dash `—` for emphasis, en-dash `–` for ranges (*"17. – 19. Dez."*)
+- HTML entities for umlauts in body, raw UTF-8 only in `<title>`
+- Hero titles end with period; section labels don't
+- **No `&`** outside brand names — always *"und"*
+
+#### Anti-redundancy rule
+At most **two** "we'll get back to you / contact us" beats per email:
+- Unique-purpose section (e.g., security fallback, *"Bei Transportschäden melden Sie sich"*)
+- Canonical support block at the bottom
+
+If the team-note above the support block also says *"Bei Fragen sind wir … für Sie da"*, that's a third redundant beat — **trim it**.
+
+#### 10-point checklist for new templates
+1. Hero stack — title doesn't repeat badge or CTA verb?
+2. Banned phrases — none present?
+3. Active voice from customer perspective?
+4. Translation tells gone (`&`, *"hochwertig"*, *"Live"*, *"per E-Mail"* …)?
+5. Section labels match established phrases (*"Was passiert als nächstes?"*, etc.)?
+6. Newsletter / Support / Footer use the canonical version?
+7. Tracker labels (if used) are nouns, not past participles?
+8. Punctuation: em-dash for emphasis, en-dash for ranges?
+9. HTML entities for umlauts in body, raw UTF-8 in `<title>`?
+10. Tone matches the context (delay vs joy vs cancellation vs security)?
+
+**All new templates must inherit `docs/COPY-RULES.md` automatically.**
 
 ### Canonical blocks (identical across all 22 templates)
 
