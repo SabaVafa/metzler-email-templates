@@ -414,27 +414,61 @@
                 <h1 class="hero-title">Ihre Zahlung ist noch offen.</h1>
 
                 <p class="hero-subtitle">
-                  Guten Tag {$Kunde->cVorname} {$Kunde->cNachname}, Amazon Pay konnte die Zahlung nicht abschlie&szlig;en. Aktualisieren Sie kurz die Zahlungsweise &mdash; der Versuch l&auml;uft anschlie&szlig;end automatisch.
+                  Amazon Pay konnte die Zahlung nicht abschlie&szlig;en. Aktualisieren Sie kurz die Zahlungsmethode &mdash; der Versuch l&auml;uft anschlie&szlig;end automatisch.
                 </p>
 
-                <!-- Bestellnummer + CTA -->
+                <!-- Meta + CTA stack -->
                 <table width="100%" cellpadding="0" cellspacing="0" role="presentation"
                        style="border-radius:6px; background-color:#ffffff; overflow:hidden;">
+
+                  <!-- Row 1: Datum + Zahlungsart -->
                   <tr>
-                    <td style="padding:16px 22px; background-color:#ffffff; text-align:center; border:1px solid #e8ece8; border-radius:6px;">
+                    <td style="padding:10px; background-color:#f7f9f7; border-bottom:1px solid #e8ece8;">
+                      <!--
+                        DEV (JTL-Shop 5): replace mock values below with
+                          Datum       = {$smarty.now|date_format:"%d. %B %Y"}
+                          Zahlungsart = Amazon Pay (hardcoded — trigger context)
+                      -->
+                      <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                        <tr>
+                          <td class="meta-col" style="width:50%; vertical-align:middle;">
+                            <div style="background-color:#ffffff; border:1px solid #e8ece8; border-radius:4px; padding:12px 16px;">
+                              <div class="meta-label" style="margin-bottom:4px;">Datum</div>
+                              <div class="meta-value-light">10. Dezember 2024</div>
+                            </div>
+                          </td>
+                          <td class="meta-col-spacer" style="width:10px;">&nbsp;</td>
+                          <td class="meta-col" style="width:50%; vertical-align:middle;">
+                            <div style="background-color:#ffffff; border:1px solid #e8ece8; border-radius:4px; padding:12px 16px;">
+                              <div class="meta-label" style="margin-bottom:4px;">Zahlungsart</div>
+                              <div class="meta-value-light">Amazon Pay</div>
+                            </div>
+                          </td>
+                        </tr>
+                      </table>
+                    </td>
+                  </tr>
+
+                  <!-- Row 2: Bestellnummer + CTA -->
+                  <tr>
+                    <td style="padding:16px 22px; background-color:#f7f9f7; text-align:center;">
+                      <!--
+                        DEV (JTL-Shop 5): replace mock "#12345" below with
+                          #{$Bestellung->cBestellNr}
+                      -->
                       <div style="margin-bottom:16px;">
-                        <span class="meta-label">Bestellnummer&nbsp;&nbsp;</span><span class="meta-value" style="font-size:14px;">#{$Bestellung->cBestellNr}</span>
+                        <span class="meta-label">Bestellnummer&nbsp;&nbsp;</span><span class="meta-value" style="font-size:14px;">#12345</span>
                       </div>
                       <!--[if mso]>
                       <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"
-                        href="https://payments.amazon.de/overview" style="height:44px;v-text-anchor:middle;width:230px;" arcsize="11%"
+                        href="https://payments.amazon.de/overview" style="height:44px;v-text-anchor:middle;width:240px;" arcsize="11%"
                         fillcolor="#015253" stroke="f">
                         <w:anchorlock/>
-                        <center style="color:#ffffff;font-family:'Montserrat',Arial,sans-serif;font-size:14px;font-weight:600;">Zahlungsweise aktualisieren</center>
+                        <center style="color:#ffffff;font-family:'Montserrat',Arial,sans-serif;font-size:14px;font-weight:600;">Zahlungsmethode aktualisieren</center>
                       </v:roundrect>
                       <![endif]-->
                       <!--[if !mso]><!-->
-                      <a href="https://payments.amazon.de/overview" target="_blank" class="btn-primary" style="display:inline-block; background-color:#015253; color:#ffffff; font-family:'Montserrat','Helvetica Neue',Arial,sans-serif; font-size:14px; font-weight:600; letter-spacing:0.5px; padding:13px 30px; border-radius:5px; text-decoration:none; text-align:center;">Zahlungsweise aktualisieren</a>
+                      <a href="https://payments.amazon.de/overview" target="_blank" class="btn-primary" style="display:inline-block; background-color:#015253; color:#ffffff; font-family:'Montserrat','Helvetica Neue',Arial,sans-serif; font-size:14px; font-weight:600; letter-spacing:0.5px; padding:13px 30px; border-radius:5px; text-decoration:none; text-align:center;">Zahlungsmethode aktualisieren</a>
                       <!--<![endif]-->
                     </td>
                   </tr>
@@ -485,6 +519,14 @@
             <!-- ─────────────────────────── -->
             <!-- IHRE BESTELLUNG             -->
             <!-- ─────────────────────────── -->
+            <!--
+              DEV (JTL-Shop 5): wrap this entire <tr> in
+                {if isset($Bestellung->Positionen) && $Bestellung->Positionen|@count > 0}
+                  ...
+                {/if}
+              so the section degrades gracefully if the Amazon Pay plugin
+              does not expose order positions in its Smarty scope.
+            -->
             <tr>
               <td class="section">
                 <h2 class="section-label">Ihre Bestellung</h2>
