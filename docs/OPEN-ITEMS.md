@@ -39,9 +39,30 @@ All `<img src>` paths are relative. Upload the `assets/` folder to a public HTTP
 
 The 4 templates with newsletter blocks currently link to `{$newsletterSubscribeURL}`. Dev must wire this to a **double-opt-in** endpoint (Art. 6(1)(a) DSGVO requires confirmed consent), not an instant-subscribe URL.
 
-## 7. Optional — restore dark-mode palette
+## 7. Dark-mode CSS — pending separate pass
 
-Dark-mode CSS was disabled across all templates (forced light mode) per design decision. The palette is preserved in git history if the client later wants to re-enable it.
+Light/dark color-scheme **meta tags** are now declared in all 28 templates (`<meta name="color-scheme" content="light dark">`). The CSS palette for `@media (prefers-color-scheme: dark)` and `[data-ogsc]` (Outlook.com) is **not yet implemented** — pending a focused design pass with token mapping (cards `#252525`, body `#1a1a1a`, badges adjusted, etc.). Without that CSS, dark-mode-aware clients (Apple Mail, Gmail) will fall back to their auto-darken behavior, which is acceptable but not optimal. Track as a follow-up workstream.
+
+## 8. Product-image `alt` text in plugin templates
+
+The 12 templates with mock `product-image.jpg` rows now use `alt=""` (decorative — relies on the product name in the adjacent `<div class="product-name">` cell to convey meaning, which is WCAG-compliant). For production:
+
+- Recommended: keep `alt=""` (product name is already visible to AT users via the next cell — descriptive alt would be redundant)
+- Alternative: set `alt="{$oPosition->cName|escape}"` and use `alt=""` only when the cName is also visible inline. Decide once per email-client behavior testing.
+
+Templates affected: order-confirmation, payment-confirmation, review-request, production-guide, invoice-delivery, widerrufsbestaetigung, product-question-confirmation, amazon-pay-soft-decline, amazon-pay-hard-decline, paypal-zahlung-abgelehnt, zahlungs-erinnerung, zahlungsinformationen-vorkasse.
+
+## 9. Email-client QA before launch
+
+Send each of the 28 templates to a test inbox in each major German-market client and verify rendering:
+
+- **Apple Mail** (macOS + iOS) — both light and dark mode
+- **Gmail** (web + iOS app + Android app)
+- **Outlook.com** (web)
+- **Outlook desktop** (Windows) — confirm logo PNG fallback renders, VML buttons render
+- **GMX / Web.de** — significant German market share, often missed by international testers
+
+Use Litmus 7-day free trial, Brevo's free transactional tier, or fire from JTL backend itself for full Smarty rendering test.
 
 ---
 
