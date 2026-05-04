@@ -499,27 +499,27 @@
                 <table width="100%" cellpadding="0" cellspacing="0" role="presentation"
                        style="border-radius:6px; background-color:#ffffff; overflow:hidden;">
 
-                  <!-- Row 1: Datum + Zahlungsart -->
+                  <!-- Row 1: Zahlungsart + Bestellnummer -->
                   <tr>
                     <td style="padding:10px; background-color:#f7f9f7; border-bottom:1px solid #e8ece8;">
                       <!--
                         DEV (JTL-Shop 5): replace mock values below with
-                          Datum       = {$smarty.now|date_format:"%d. %B %Y"}
-                          Zahlungsart = Amazon Pay (hardcoded — trigger context)
+                          Zahlungsart   = Vorkasse (Überweisung)  (hardcoded — trigger context)
+                          Bestellnummer = #{$Bestellung->cBestellNr}
                       -->
                       <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
                         <tr>
                           <td class="meta-col" style="width:50%; vertical-align:middle;">
                             <div style="background-color:#ffffff; border:1px solid #e8ece8; border-radius:4px; padding:12px 16px;">
-                              <div class="meta-label" style="margin-bottom:4px;">Datum</div>
-                              <div class="meta-value-light">10. Dezember 2024</div>
+                              <div class="meta-label" style="margin-bottom:4px;">Zahlungsart</div>
+                              <div class="meta-value-light">Vorkasse (&Uuml;berweisung)</div>
                             </div>
                           </td>
                           <td class="meta-col-spacer" style="width:10px;">&nbsp;</td>
                           <td class="meta-col" style="width:50%; vertical-align:middle;">
                             <div style="background-color:#ffffff; border:1px solid #e8ece8; border-radius:4px; padding:12px 16px;">
-                              <div class="meta-label" style="margin-bottom:4px;">Zahlungsart</div>
-                              <div class="meta-value-light">Vorkasse (&Uuml;berweisung)</div>
+                              <div class="meta-label" style="margin-bottom:4px;">Bestellnummer</div>
+                              <div class="meta-value-light">#12345</div>
                             </div>
                           </td>
                         </tr>
@@ -527,16 +527,9 @@
                     </td>
                   </tr>
 
-                  <!-- Row 2: Bestellnummer + CTA -->
+                  <!-- Row 2: CTA -->
                   <tr>
                     <td style="padding:16px 22px; background-color:#f7f9f7; text-align:center;">
-                      <!--
-                        DEV (JTL-Shop 5): replace mock "#12345" below with
-                          #{$Bestellung->cBestellNr}
-                      -->
-                      <div style="margin-bottom:16px;">
-                        <span class="meta-label">Bestellnummer&nbsp;&nbsp;</span><span class="meta-value" style="font-size:14px;">#12345</span>
-                      </div>
                       <!--[if mso]>
                       <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"
                         href="{$bestellungURL}" style="height:44px;v-text-anchor:middle;width:185px;" arcsize="11%"
