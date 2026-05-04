@@ -39,11 +39,19 @@ All `<img src>` paths are relative. Upload the `assets/` folder to a public HTTP
 
 The 4 templates with newsletter blocks currently link to `{$newsletterSubscribeURL}`. Dev must wire this to a **double-opt-in** endpoint (Art. 6(1)(a) DSGVO requires confirmed consent), not an instant-subscribe URL.
 
-## 7. Dark-mode CSS — pending separate pass
+## 7. Outlook desktop logo PNG fallback — wiring complete, image hosting still pending
+
+The 56 inline-SVG logos (header + footer × 28) are now wrapped in MSO conditional comments with a PNG fallback (`assets/logo-white.png`). Modern clients (Apple Mail, Gmail, etc.) render the SVG; Outlook desktop renders the PNG.
+
+**Still pending before launch**: the PNG `src` is currently `../assets/logo-white.png` (relative path). When the email is sent and opened in Outlook desktop, that path resolves to nothing — the image fails to load. The PNG fallback only fully works after assets are hosted on a public HTTPS URL (see §5 Image hosting).
+
+When §5 is done, find/replace `../assets/logo-white.png` → `https://your-host/path/logo-white.png` in all 28 templates.
+
+## 8. Dark-mode CSS — pending separate pass
 
 Light/dark color-scheme **meta tags** are now declared in all 28 templates (`<meta name="color-scheme" content="light dark">`). The CSS palette for `@media (prefers-color-scheme: dark)` and `[data-ogsc]` (Outlook.com) is **not yet implemented** — pending a focused design pass with token mapping (cards `#252525`, body `#1a1a1a`, badges adjusted, etc.). Without that CSS, dark-mode-aware clients (Apple Mail, Gmail) will fall back to their auto-darken behavior, which is acceptable but not optimal. Track as a follow-up workstream.
 
-## 8. Product-image `alt` text in plugin templates
+## 9. Product-image `alt` text in plugin templates
 
 The 12 templates with mock `product-image.jpg` rows now use `alt=""` (decorative — relies on the product name in the adjacent `<div class="product-name">` cell to convey meaning, which is WCAG-compliant). For production:
 
@@ -52,7 +60,7 @@ The 12 templates with mock `product-image.jpg` rows now use `alt=""` (decorative
 
 Templates affected: order-confirmation, payment-confirmation, review-request, production-guide, invoice-delivery, widerrufsbestaetigung, product-question-confirmation, amazon-pay-soft-decline, amazon-pay-hard-decline, paypal-zahlung-abgelehnt, zahlungs-erinnerung, zahlungsinformationen-vorkasse.
 
-## 9. Email-client QA before launch
+## 10. Email-client QA before launch
 
 Send each of the 28 templates to a test inbox in each major German-market client and verify rendering:
 
