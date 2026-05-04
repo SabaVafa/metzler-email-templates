@@ -527,27 +527,16 @@
                     </td>
                   </tr>
 
-                  <!-- Row 2: Bestellnummer + CTA -->
+                  <!-- Row 2: Bestellnummer (CTA removed — bank details below are the action; switch-method handled via support block) -->
                   <tr>
                     <td style="padding:16px 22px; background-color:#f7f9f7; text-align:center;">
                       <!--
                         DEV (JTL-Shop 5): replace mock "#12345" below with
                           #{$Bestellung->cBestellNr}
                       -->
-                      <div style="margin-bottom:16px;">
+                      <div>
                         <span class="meta-label">Bestellnummer&nbsp;&nbsp;</span><span class="meta-value" style="font-size:14px;">#12345</span>
                       </div>
-                      <!--[if mso]>
-                      <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"
-                        href="{$paymentURL}" style="height:44px;v-text-anchor:middle;width:160px;" arcsize="11%"
-                        fillcolor="#015253" stroke="f">
-                        <w:anchorlock/>
-                        <center style="color:#ffffff;font-family:'Montserrat',Arial,sans-serif;font-size:14px;font-weight:600;">Jetzt bezahlen</center>
-                      </v:roundrect>
-                      <![endif]-->
-                      <!--[if !mso]><!-->
-                      <a href="{$paymentURL}" target="_blank" class="btn-primary" style="display:inline-block; background-color:#015253; color:#ffffff; font-family:'Montserrat','Helvetica Neue',Arial,sans-serif; font-size:14px; font-weight:600; letter-spacing:0.5px; padding:13px 30px; border-radius:5px; text-decoration:none; text-align:center;">Jetzt bezahlen</a>
-                      <!--<![endif]-->
                     </td>
                   </tr>
                 </table>
