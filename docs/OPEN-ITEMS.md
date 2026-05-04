@@ -60,7 +60,30 @@ The 12 templates with mock `product-image.jpg` rows now use `alt=""` (decorative
 
 Templates affected: order-confirmation, payment-confirmation, review-request, production-guide, invoice-delivery, widerrufsbestaetigung, product-question-confirmation, amazon-pay-soft-decline, amazon-pay-hard-decline, paypal-zahlung-abgelehnt, zahlungs-erinnerung, zahlungsinformationen-vorkasse.
 
-## 10. Email-client QA before launch
+## 10. Unified FAQ block — pending
+
+A unified *"Häufige Fragen"* block was drafted but not yet wired. Decision: same 3 Q+A across `order-confirmation`, `production-guide`, `production-delay`, `invoice-delivery`. Replaces the two existing production-only FAQ blocks (which used different per-email content and linked out to `/faq/[slug]` pages).
+
+Format: Q in bold 14 px `#1a1a1a`, A in regular 14 px `#555` line-height 1.65, `1px solid #ebebeb` divider between rows. No outbound link — answers are inlined in the email so customers don't need to leave.
+
+### Drafted content (awaiting confirmation)
+
+**Q1.** Wann erhalte ich meine Bestellung?
+> Lagerware versenden wir innerhalb von 1–3 Werktagen. Sonderanfertigungen aus unserer Werkstatt brauchen meist 8–14 Werktage. Sobald Ihr Paket unterwegs ist, melden wir uns mit der Sendungsnummer.
+
+**Q2.** Kann ich meine Bestellung noch ändern oder stornieren?
+> Solange Ihre Bestellung noch nicht in der Produktion ist, ändern wir sie gern für Sie — bitte melden Sie sich kurz bei uns. Für nicht individuell gefertigte Artikel gilt nach Erhalt der Ware Ihr 14-tägiges Widerrufsrecht.
+
+**Q3.** Wie lange dauert die Fertigung Ihrer Bestellung?
+> Standardware ist bei uns lagernd und geht direkt in den Versand. Sonderanfertigungen — etwa Beschriftungen, Sonderfarben oder individuelle Maße — fertigen wir einzeln in unserer Werkstatt in Reutlingen und brauchen meist 8–14 Werktage.
+
+### Placeholder details to confirm before launch
+
+- **1–3 Werktage** for Lagerware shipping (Q1) — confirm against actual operations
+- **8–14 Werktage** for Sonderanfertigungen (Q1 + Q3) — confirm against actual operations
+- **Beschriftungen, Sonderfarben, individuelle Maße** (Q3) — confirm these are the most representative Sonderanfertigung types, or replace with the right three (Gravur, Klingelplatten, Hausnummern, …)
+
+## 11. Email-client QA before launch
 
 Send each of the 28 templates to a test inbox in each major German-market client and verify rendering:
 
