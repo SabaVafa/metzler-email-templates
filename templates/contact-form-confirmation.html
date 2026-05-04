@@ -174,6 +174,11 @@
                 </p>
 
                 <!-- Meta card -->
+                <!--
+                  DEV (JTL-Shop 5): replace mock values with
+                    Eingang am   = {$smarty.now|date_format:"%d. %B %Y, %H:%M"}&nbsp;Uhr
+                    E-Mail       = {$Email|escape}   (JTL contact-form plugin var; verify name)
+                -->
                 <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:6px; background-color:#ffffff; overflow:hidden;">
                   <tr>
                     <td style="padding:10px; background-color:#f7f9f7;">
@@ -188,8 +193,8 @@
                           <td class="meta-col-spacer" style="width:10px;">&nbsp;</td>
                           <td class="meta-col" style="width:50%; vertical-align:middle;">
                             <div style="background-color:#ffffff; border:1px solid #e8ece8; border-radius:4px; padding:12px 16px;">
-                              <div class="meta-label" style="margin-bottom:4px;">Referenznummer</div>
-                              <div class="meta-value">KO-2024-12345</div>
+                              <div class="meta-label" style="margin-bottom:4px;">E-Mail-Adresse</div>
+                              <div class="meta-value-light" style="word-break:break-all;">info@example.com</div>
                             </div>
                           </td>
                         </tr>
@@ -219,34 +224,64 @@
             </tr>
 
             <!-- ─────────────────────────── -->
-            <!-- IHRE NACHRICHT (Echo-back)  -->
+            <!-- IHRE ANFRAGE (Echo-back)    -->
             <!-- ─────────────────────────── -->
             <tr>
               <td class="section">
-                <h2 class="section-label">Ihre Nachricht</h2>
+                <h2 class="section-label">Ihre Anfrage</h2>
 
                 <!--
-                  DEV (JTL-Shop 5): Smarty vars to inject:
-                    subject  = {$kontaktFormularBetreff|escape}
-                    message  = {$kontaktFormularNachricht|escape|nl2br}
+                  DEV (JTL-Shop 5): JTL contact-form plugin Smarty vars
+                  (verify exact names against your install — see docs/PLACEHOLDERS.md)
+
+                  Always shown:
+                    {$kontaktFormularNachricht|escape|nl2br}   message body
+                    {$Vorname|escape} {$Nachname|escape}       sender name
+
+                  Conditional (wrap in {if $var}…{/if} so empty rows don't render):
+                    {$kontaktFormularBetreff|escape}   subject (if form has subject field)
+                    {$Firma|escape}                    company
+                    {$Telefon|escape}                  phone
+                    {$Mobil|escape}                    mobile
+                    {$Fax|escape}                      fax
                 -->
                 <table width="100%" cellpadding="0" cellspacing="0" role="presentation"
                        style="background-color:#fafafa; border:1px solid #eaeaea; border-radius:6px; overflow:hidden;">
                   <tr>
                     <td style="padding:18px 20px;">
 
-                      <!-- Subject row -->
+                      <!-- Betreff (conditional) -->
                       <div style="font-size:11px; font-weight:700; color:#767676; letter-spacing:0.8px; text-transform:uppercase; margin-bottom:6px;">Betreff</div>
                       <div style="font-size:14px; font-weight:600; color:#1a1a1a; margin-bottom:14px;">Allgemeine Frage</div>
 
-                      <!-- Divider -->
                       <div style="border-top:1px solid #ececec; margin-bottom:14px;"></div>
 
-                      <!-- Message text -->
-                      <div style="font-size:11px; font-weight:700; color:#767676; letter-spacing:0.8px; text-transform:uppercase; margin-bottom:8px;">Ihre Nachricht</div>
-                      <div style="font-size:14px; color:#333; line-height:1.7; font-style:italic;">
+                      <!-- Message (always shown) -->
+                      <div style="font-size:11px; font-weight:700; color:#767676; letter-spacing:0.8px; text-transform:uppercase; margin-bottom:8px;">Nachricht</div>
+                      <div style="font-size:14px; color:#333; line-height:1.7; font-style:italic; margin-bottom:14px;">
                         &bdquo;Bietet ihr eure T&uuml;rklingeln auch mit zus&auml;tzlicher Hausnummer-Beleuchtung an? Ich plane einen Neubau und m&ouml;chte beides m&ouml;glichst aus einer Hand beziehen."
                       </div>
+
+                      <div style="border-top:1px solid #ececec; margin-bottom:14px;"></div>
+
+                      <!-- Anfrage von (always shown) -->
+                      <div style="font-size:11px; font-weight:700; color:#767676; letter-spacing:0.8px; text-transform:uppercase; margin-bottom:6px;">Anfrage von</div>
+                      <div style="font-size:14px; color:#1a1a1a; margin-bottom:2px;">Max Mustermann</div>
+
+                      <!-- Firma (conditional) -->
+                      <div style="font-size:13px; color:#555; margin-bottom:14px;">Musterfirma</div>
+
+                      <!-- Telefon (conditional) -->
+                      <div style="font-size:11px; font-weight:700; color:#767676; letter-spacing:0.8px; text-transform:uppercase; margin-bottom:6px;">Telefon</div>
+                      <div style="font-size:14px; color:#1a1a1a; margin-bottom:14px;">07121&nbsp;/&nbsp;3478&nbsp;2035</div>
+
+                      <!-- Mobil (conditional) -->
+                      <div style="font-size:11px; font-weight:700; color:#767676; letter-spacing:0.8px; text-transform:uppercase; margin-bottom:6px;">Mobil</div>
+                      <div style="font-size:14px; color:#1a1a1a; margin-bottom:14px;">0151&nbsp;/&nbsp;3478&nbsp;2036</div>
+
+                      <!-- Fax (conditional) -->
+                      <div style="font-size:11px; font-weight:700; color:#767676; letter-spacing:0.8px; text-transform:uppercase; margin-bottom:6px;">Fax</div>
+                      <div style="font-size:14px; color:#1a1a1a;">07121&nbsp;/&nbsp;3478&nbsp;2034</div>
 
                     </td>
                   </tr>

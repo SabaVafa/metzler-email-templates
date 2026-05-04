@@ -19,9 +19,14 @@ Every `{$variable}` referenced across the 17 templates. Types and example values
 | `{$newsletterSubscribeURL}` | order-confirmation, delivered, review-request, review-confirmation | Double-opt-in subscribe endpoint (see TRIGGERS.md) | `https://edelstahl-tuerklingel.de/newsletter?action=subscribe` |
 | `{$newsletterConfirmURL}` | newsletter-activation | DOI confirmation link with single-use token (24-hour expiry) | `https://edelstahl-tuerklingel.de/newsletter?bestaetigung=…` |
 | `{$backInStockConfirmURL}` | back-in-stock-doi | DOI confirmation link for "notify me when available" subscription (24-hour expiry, single-use) | `https://edelstahl-tuerklingel.de/wieder-verfuegbar?bestaetigung=…` |
-| `{$kontaktReferenz}` | contact-form-confirmation | Auto-generated reference number for the contact submission | `KO-2024-12345` |
-| `{$kontaktFormularBetreff}` | contact-form-confirmation | Subject / dropdown value the customer selected on the form | `Allgemeine Frage` |
-| `{$kontaktFormularNachricht}` | contact-form-confirmation | Message body the customer typed (HTML-escaped, `nl2br` for line breaks) | (free-text) |
+| `{$kontaktFormularBetreff}` | contact-form-confirmation | Subject / dropdown value the customer selected on the form. **Conditional** — JTL only exposes if the form has a subject field; wrap in `{if $kontaktFormularBetreff}…{/if}`. | `Allgemeine Frage` |
+| `{$kontaktFormularNachricht}` | contact-form-confirmation | Message body the customer typed (HTML-escaped, `nl2br` for line breaks). Always shown. | (free-text) |
+| `{$Vorname}` + `{$Nachname}` | contact-form-confirmation | Sender name. Always shown. JTL contact-form plugin exposes these as separate fields per the rendered output sample. | `Max Mustermann` |
+| `{$Firma}` | contact-form-confirmation | Sender company. **Conditional** — wrap in `{if $Firma}…{/if}`. | `Musterfirma` |
+| `{$Email}` | contact-form-confirmation | Sender email address. Always shown (form requires it). | `info@example.com` |
+| `{$Telefon}` | contact-form-confirmation | Sender phone. **Conditional** — wrap in `{if $Telefon}…{/if}`. Optional form field. | `07121 / 3478 2035` |
+| `{$Mobil}` | contact-form-confirmation | Sender mobile. **Conditional**. Optional form field. | `0151 / 3478 2036` |
+| `{$Fax}` | contact-form-confirmation | Sender fax. **Conditional**. Optional form field — most submissions will not have this. | `07121 / 3478 2034` |
 | `{$passwortFestlegenURL}` | account-created-by-admin | One-time password-set link with single-use token (24-hour expiry); customer's account is created without a password and this link sets it for the first time | `https://edelstahl-tuerklingel.de/passwort-festlegen?token=…` |
 | `{$kundengruppeName}` | customer-group-assignment | Display name of the new group (used inline in the hero subtitle and the meta card) | `Wholesale` / `VIP` / `Handwerker` |
 | `{$kundengruppe}` | customer-group-assignment | Group identifier — drives the Smarty conditional in the "Was sich für Sie ändert" section | `b2b` / `vip` / `installer` / *(other)* |
