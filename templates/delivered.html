@@ -292,7 +292,6 @@
       .strip-right { display: block !important; width: 100% !important; text-align: left !important; white-space: normal !important; }
       .progress-label { font-size: 11px !important; letter-spacing: 0.3px !important; }
       .delivery-row-left, .delivery-row-right { display: block !important; width: 100% !important; padding: 0 0 12px 0 !important; text-align: left !important; }
-      .upsell-cell { display: block !important; width: 100% !important; padding: 0 0 12px 0 !important; }
       .footer-main { padding: 28px 20px !important; }
       .footer-legal-row,
       .footer-copy-row { padding-left: 20px !important; padding-right: 20px !important; }
@@ -639,89 +638,6 @@
             </tr>
 
             <!-- ─────────────────────────── -->
-            <!-- WERKSTATT-EMPFEHLUNG (Upsell §7(3) UWG, opt-out below) -->
-            <!-- ─────────────────────────── -->
-            <tr>
-              <td class="section" style="padding-top:28px; padding-bottom:32px; border-top:1px solid #f0f0f0; border-bottom:none;">
-                <h2 class="section-label">Empfehlung aus unserer Werkstatt</h2>
-
-                <p style="font-size:13px; color:#555; line-height:1.7; margin:0 0 18px;">
-                  Ein Detail, das Ihrem Brief&shy;kasten Charakter gibt: unsere Blumenk&auml;sten aus Stahl, lackiert in RAL 7016 Anthrazit &ndash; die sich harmonisch an Ihrem Modell erg&auml;nzen lassen.
-                </p>
-
-                <!--
-                  DEV (JTL-Shop 5): placeholder product data for slots 2 and 3 below.
-                  In production, loop over a product-empfehlungen array or hardcode the real SKUs.
-                  All three product URLs and the unsubscribe link use placeholder paths.
-                -->
-
-                <!-- 3-product recommendation grid -->
-                <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="border-collapse:separate; border-spacing:0;">
-                  <tr>
-
-                    <!-- Product 1: Cubic I (real data) -->
-                    <td class="upsell-cell" valign="top" style="width:33.33%; padding-right:8px;">
-                      <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background:#f7faf7; border:1px solid #e0ebe3; border-radius:6px;">
-                        <tr>
-                          <td style="padding:14px;">
-                            <div style="font-size:0; line-height:0; border-radius:4px; overflow:hidden; background:#ffffff; margin-bottom:12px;">
-                              <img src="../assets/promotion/blumenkasten-cubic-1-anthrazit.png" alt="Metzler Blumenkasten Cubic I &ndash; RAL 7016 Anthrazit" width="100%" style="display:block; width:100%; height:auto;" />
-                            </div>
-                            <div style="font-size:13px; font-weight:700; color:#1a1a1a; line-height:1.35; margin-bottom:4px; min-height:36px;">Blumenkasten Cubic&nbsp;I</div>
-                            <div style="font-size:12px; color:#767676; margin-bottom:10px;">RAL 7016 Anthrazit</div>
-                            <div style="font-size:14px; font-weight:700; color:#1a1a1a; margin-bottom:10px;">39,99&nbsp;&euro;</div>
-                            <a href="https://edelstahl-tuerklingel.de/produkt/blumenkasten-cubic-1" target="_blank" style="display:inline-block; font-size:12px; color:#015253; font-weight:600; text-decoration:none; border-bottom:1px solid #015253;">Im Shop ansehen</a>
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-
-                    <!-- Product 2: Cubic II (PLACEHOLDER name/price/url) -->
-                    <td class="upsell-cell" valign="top" style="width:33.33%; padding:0 4px;">
-                      <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background:#f7faf7; border:1px solid #e0ebe3; border-radius:6px;">
-                        <tr>
-                          <td style="padding:14px;">
-                            <div style="font-size:0; line-height:0; border-radius:4px; overflow:hidden; background:#ffffff; margin-bottom:12px;">
-                              <img src="../assets/promotion/blumenkasten-cubic-2-anthrazit.png" alt="Metzler Blumenkasten Cubic II &ndash; RAL 7016 Anthrazit" width="100%" style="display:block; width:100%; height:auto;" />
-                            </div>
-                            <div style="font-size:13px; font-weight:700; color:#1a1a1a; line-height:1.35; margin-bottom:4px; min-height:36px;">Blumenkasten Cubic&nbsp;II</div>
-                            <div style="font-size:12px; color:#767676; margin-bottom:10px;">RAL 7016 Anthrazit</div>
-                            <div style="font-size:14px; font-weight:700; color:#1a1a1a; margin-bottom:10px;">49,99&nbsp;&euro;</div>
-                            <a href="https://edelstahl-tuerklingel.de/produkt/blumenkasten-cubic-2" target="_blank" style="display:inline-block; font-size:12px; color:#015253; font-weight:600; text-decoration:none; border-bottom:1px solid #015253;">Im Shop ansehen</a>
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-
-                    <!-- Product 3: Rondo (PLACEHOLDER name/price/url) -->
-                    <td class="upsell-cell" valign="top" style="width:33.33%; padding-left:8px;">
-                      <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="background:#f7faf7; border:1px solid #e0ebe3; border-radius:6px;">
-                        <tr>
-                          <td style="padding:14px;">
-                            <div style="font-size:0; line-height:0; border-radius:4px; overflow:hidden; background:#ffffff; margin-bottom:12px;">
-                              <img src="../assets/promotion/blumenkasten-rondo-anthrazit.png" alt="Metzler Blumenkasten Rondo &ndash; RAL 7016 Anthrazit" width="100%" style="display:block; width:100%; height:auto;" />
-                            </div>
-                            <div style="font-size:13px; font-weight:700; color:#1a1a1a; line-height:1.35; margin-bottom:4px; min-height:36px;">Blumenkasten Rondo</div>
-                            <div style="font-size:12px; color:#767676; margin-bottom:10px;">RAL 7016 Anthrazit</div>
-                            <div style="font-size:14px; font-weight:700; color:#1a1a1a; margin-bottom:10px;">34,99&nbsp;&euro;</div>
-                            <a href="https://edelstahl-tuerklingel.de/produkt/blumenkasten-rondo" target="_blank" style="display:inline-block; font-size:12px; color:#015253; font-weight:600; text-decoration:none; border-bottom:1px solid #015253;">Im Shop ansehen</a>
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-
-                  </tr>
-                </table>
-
-                <!-- Opt-out footer (§7(3) Nr. 3 UWG) -->
-                <p style="font-size:11px; color:#999; line-height:1.6; margin:20px 0 0; text-align:center;">
-                  <a href="{$unsubscribeURL}" target="_blank" style="color:#999; text-decoration:underline;">Keine Empfehlungen mehr erhalten</a>
-                </p>
-
-              </td>
-            </tr>
-
-            <!-- ─────────────────────────── -->
             <!-- NEWSLETTER SIGN-UP (DSGVO Art. 6 Abs. 1 lit. a) -->
             <!-- ─────────────────────────── -->
             <tr>
@@ -733,7 +649,7 @@
                     <td style="padding:22px 24px;">
 
                       <div style="font-family:'Montserrat','Helvetica Neue',Arial,sans-serif; font-size:13px; font-weight:700; color:#1a1a1a; margin-bottom:6px;">
-                        Neues aus unserer Werkstatt
+                        Neues aus unserer Manufaktur
                       </div>
                       <p style="font-size:12px; color:#666; line-height:1.7; margin:0 0 12px;">
                         Erfahren Sie als Erste von neuen Modellen, Sonderanfertigungen und Geschichten aus unserer Manufaktur in Reutlingen.
