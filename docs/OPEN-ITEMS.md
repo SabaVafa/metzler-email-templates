@@ -83,27 +83,7 @@ Format: Q in bold 14 px `#1a1a1a`, A in regular 14 px `#555` line-height 1.65, `
 - **8–14 Werktage** for Sonderanfertigungen (Q1 + Q3) — confirm against actual operations
 - **Beschriftungen, Sonderfarben, individuelle Maße** (Q3) — confirm these are the most representative Sonderanfertigung types, or replace with the right three (Gravur, Klingelplatten, Hausnummern, …)
 
-## 11. ⚠ § 7(3) UWG opt-out — re-add OR remove upsell before launch
-
-The cross-sell §7(3) Nr. 4 opt-out link *"Keine Empfehlungen mehr erhalten"* was removed from `track-trace.html` + `production-guide.html` (commit a484784) on user request "for now". The Blumenkasten 3-card upsell remains in both templates.
-
-**Current state is not safely launchable.** Under § 7 Abs. 3 UWG, the upsell carve-out requires *"bei jeder Verwendung klar und deutlich"* opt-out info on every send. Without the link, exposes Metzler to Abmahnung from competitors / Wettbewerbszentrale (typical cost 800–2.000 € per warning).
-
-Pick one of:
-
-- **(a) Re-add the opt-out link** — wire `{$unsubscribeURL}` to an endpoint that records "this customer doesn't want product recommendations" (distinct from full newsletter unsubscribe). The block to reinstate:
-  ```html
-  <!-- Opt-out footer (§7(3) Nr. 3 UWG) -->
-  <p style="font-size:11px; color:#999; line-height:1.6; margin:20px 0 0; text-align:center;">
-    <a href="{$unsubscribeURL}" target="_blank" style="color:#999; text-decoration:underline;">Keine Empfehlungen mehr erhalten</a>
-  </p>
-  ```
-- **(b) Add explicit opt-in checkbox at checkout** (DSGVO Art. 6(1)(a)): *"Ich möchte Produktempfehlungen erhalten"*. Replaces §7(3) as the legal basis.
-- **(c) Remove the upsell entirely** — strip the Blumenkasten 3-card grid from both templates. No werbliche content = no opt-out required.
-
-Decision and implementation must be in place before either template is sent to a real customer.
-
-## 12. Email-client QA before launch
+## 11. Email-client QA before launch
 
 Send each of the 28 templates to a test inbox in each major German-market client and verify rendering:
 
