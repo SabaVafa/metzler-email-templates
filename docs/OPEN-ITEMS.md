@@ -4,9 +4,9 @@ Pending decisions / data the dev team or client must resolve before going live.
 
 ---
 
-## 1. Street address ⚠ blocking
+## 1. Street address ✅ resolved
 
-All 17 footers currently render **"Tübingerstraße 9"**. The Datenschutzerklärung (authoritative legal doc) says **"Täleswiesenstr. 9"**. Client to confirm correct street, then a single find/replace updates all files.
+All 28 footers now render the confirmed address: **Metzler GmbH · Täleswiesenstrasse 9 · 72770 Reutlingen** (commit pending below). Note Swiss/Alemannic "ss" spelling per official Reutlingen Adressregister, not "ß".
 
 ## 2. Contact email domain
 
