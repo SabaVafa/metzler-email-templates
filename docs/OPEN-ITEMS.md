@@ -8,9 +8,9 @@ Pending decisions / data the dev team or client must resolve before going live.
 
 All 28 footers now render the confirmed address: **Metzler GmbH · Täleswiesenstrasse 9 · 72770 Reutlingen** (commit pending below). Note Swiss/Alemannic "ss" spelling per official Reutlingen Adressregister, not "ß".
 
-## 2. Contact email domain
+## 2. Contact email ✅ resolved
 
-All templates use `info@edelstahl-tuerklingel.de` (shop domain). Datenschutzerklärung uses `info@metzlergmbh.de` (corporate). Client to confirm which is correct for customer-facing transactional email.
+All 28 templates now use **`service@metzlergmbh.de`** (corporate domain). Replaces the earlier `info@edelstahl-tuerklingel.de` placeholder. Includes the pre-filled-subject mailto deep-links in amazon-pay-hard-decline + paypal-zahlung-abgelehnt.
 
 ## 3. URL slugs to verify
 
@@ -21,15 +21,15 @@ Footer links currently guess these slugs:
 
 Dev to confirm against actual JTL CMS pages and update if different.
 
-## 4. HRB number + USt-IdNr.
+## 4. HRB + Amtsgericht + USt-IdNr. + WEEE ✅ resolved
 
-Footer placeholder text:
+All 28 footers now render the confirmed Metzler company data:
 
 ```
-HRB XXXXX · Amtsgericht Reutlingen · USt-IdNr.: DE XXX XXX XXX
+HRB 768215 · Amtsgericht Stuttgart · USt-IdNr.: DE322754305 · WEEE-Reg.-Nr.: DE 63539391
 ```
 
-Replace with real values from the Impressum.
+Note: Amtsgericht corrected from placeholder Reutlingen → Stuttgart. WEEE-Reg.-Nr. is a new line element (was not present in templates before).
 
 ## 5. Image hosting
 
