@@ -91,7 +91,17 @@ def main(argv: list[str]) -> int:
     context = ssl.create_default_context()
     sent, failed = 0, 0
 
-    with smtplib.SMTP_SSL(host, port, context=context) as smtp:
+    # Port 465 -> implicit SSL (Gmail, Yahoo, GMX)
+    # Port 587 -> STARTTLS (Office 365, custom corporate SMTP)
+    if port == 465:
+        smtp = smtplib.SMTP_SSL(host, port, context=context)
+    else:
+        smtp = smtplib.SMTP(host, port)
+        smtp.ehlo()
+        smtp.starttls(context=context)
+        smtp.ehlo()
+
+    with smtp:
         smtp.login(user, pw)
         for path in files:
             html = path.read_text(encoding="utf-8")
