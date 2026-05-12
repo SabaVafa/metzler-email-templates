@@ -488,48 +488,133 @@
       line-height: 1.6;
     }
 
+
     /* ── DARK MODE ── */
     @media (prefers-color-scheme: dark) {
-      body, #bodyTable { background-color: #0f1311 !important; }
-      .card { background-color: #1a1f1c !important; box-shadow: 0 4px 20px rgba(0,0,0,0.4) !important; }
-      .hero { background-color: #1f2522 !important; border-bottom-color: #2a3530 !important; }
-      .hero-title { color: #f0f0f0 !important; }
-      .hero-subtitle { color: #a8a8a8 !important; }
-      .section { border-bottom-color: #2a2f2c !important; }
-      .section-label { color: #909090 !important; }
+      /* === SURFACES === */
+      body, #bodyTable { background-color: #121212 !important; }
+      .card { background-color: #1c1c1c !important; box-shadow: 0 4px 20px rgba(0,0,0,0.5) !important; }
+      .hero { background-color: #1c1c1c !important; border-bottom-color: #2a2a2a !important; }
+
+      /* Catch inline white backgrounds (meta cards, inner boxes) */
+      [bgcolor="#ffffff"], [bgcolor="#FFFFFF"],
+      [style*="background-color:#ffffff"], [style*="background-color: #ffffff"],
+      [style*="background-color:#FFFFFF"], [style*="background-color: #FFFFFF"],
+      [style*="background:#ffffff"], [style*="background: #ffffff"] {
+        background-color: #1c1c1c !important;
+      }
+
+      /* Catch inline light-tint surfaces */
+      [bgcolor="#f2f4f2"], [bgcolor="#f7f9f7"], [bgcolor="#f7faf7"],
+      [bgcolor="#f5f5f5"], [bgcolor="#f6f9f6"], [bgcolor="#fafafa"],
+      [style*="background-color:#f2f4f2"], [style*="background-color: #f2f4f2"],
+      [style*="background-color:#f7f9f7"], [style*="background-color: #f7f9f7"],
+      [style*="background-color:#f7faf7"], [style*="background-color: #f7faf7"],
+      [style*="background-color:#f5f5f5"], [style*="background-color: #f5f5f5"],
+      [style*="background-color:#f6f9f6"], [style*="background-color: #f6f9f6"],
+      [style*="background-color:#fafafa"], [style*="background-color: #fafafa"],
+      [style*="background-color:#f5f8ff"], [style*="background-color: #f5f8ff"],
+      [style*="background-color:#dde8e8"], [style*="background-color: #dde8e8"],
+      [style*="background-color:#eef4f4"], [style*="background-color: #eef4f4"] {
+        background-color: #1c1c1c !important;
+      }
+
+      /* Light-green tint highlight boxes — subtle elevation */
+      [style*="background-color:#eaf3ea"], [style*="background-color: #eaf3ea"],
+      [style*="background-color:#e8f5e0"], [style*="background-color: #e8f5e0"],
+      [style*="background-color:#f0f7f0"], [style*="background-color: #f0f7f0"] {
+        background-color: #222222 !important;
+      }
+
+      /* === BORDERS — neutral dark gray everywhere === */
+      [style*="border:1px solid #e8e8e8"], [style*="border: 1px solid #e8e8e8"],
+      [style*="border:1px solid #e0e0e0"], [style*="border: 1px solid #e0e0e0"],
+      [style*="border:1px solid #ebebeb"], [style*="border: 1px solid #ebebeb"],
+      [style*="border:1px solid #e6ebe6"], [style*="border: 1px solid #e6ebe6"],
+      [style*="border:1px solid #e8ece8"], [style*="border: 1px solid #e8ece8"],
+      [style*="border:1px solid #e0ebe3"], [style*="border: 1px solid #e0ebe3"],
+      [style*="border:1px solid #e0e8e0"], [style*="border: 1px solid #e0e8e0"],
+      [style*="border:1px solid #efefef"], [style*="border: 1px solid #efefef"],
+      [style*="border:1px solid #eaeaea"], [style*="border: 1px solid #eaeaea"],
+      [style*="border:1px solid #d6e8d6"], [style*="border: 1px solid #d6e8d6"] {
+        border-color: #2a2a2a !important;
+      }
+      [style*="border-bottom:1px solid #f0f0f0"], [style*="border-bottom: 1px solid #f0f0f0"],
+      [style*="border-bottom:1px solid #f5f5f5"], [style*="border-bottom: 1px solid #f5f5f5"],
+      [style*="border-bottom:1px solid #ebebeb"], [style*="border-bottom: 1px solid #ebebeb"],
+      [style*="border-top:1px solid #e8e8e8"], [style*="border-top: 1px solid #e8e8e8"] {
+        border-color: #2a2a2a !important;
+      }
+
+      /* === TYPOGRAPHY === */
+      .section { border-bottom-color: #2a2a2a !important; }
+      .section-label { color: #c0c0c0 !important; }
       .meta-label { color: #909090 !important; }
-      .meta-value { color: #f0f0f0 !important; }
-      .meta-value-light { color: #d0d0d0 !important; }
-      .product-name { color: #f0f0f0 !important; }
+      .meta-value { color: #e8e8e8 !important; }
+      .meta-value-light { color: #c0c0c0 !important; }
+      .product-name { color: #e8e8e8 !important; }
       .product-sku { color: #909090 !important; }
-      .order-th { color: #909090 !important; border-bottom-color: #2a2f2c !important; }
-      .order-td, .order-td-qty, .order-td-price { border-bottom-color: #2a2f2c !important; color: #d0d0d0 !important; }
+      .order-th { color: #909090 !important; border-bottom-color: #2a2a2a !important; }
+      .order-td, .order-td-qty, .order-td-price { border-bottom-color: #2a2a2a !important; color: #c0c0c0 !important; }
       .order-last-td { border-bottom: none !important; }
-      .totals-td-l { color: #a8a8a8 !important; }
-      .totals-td-r { color: #d0d0d0 !important; }
-      .totals-sep-l, .totals-sep-r { border-top-color: #2a2f2c !important; }
-      .totals-grand-l, .totals-grand-r { color: #f0f0f0 !important; border-top-color: #f0f0f0 !important; }
-      .support-title { color: #f0f0f0 !important; }
-      .support-sub { color: #a8a8a8 !important; }
+      .totals-td-l { color: #a0a0a0 !important; }
+      .totals-td-r { color: #c0c0c0 !important; }
+      .totals-sep-l, .totals-sep-r { border-top-color: #2a2a2a !important; }
+      .totals-grand-l, .totals-grand-r { color: #e8e8e8 !important; border-top-color: #c0c0c0 !important; }
+      .support-title { color: #e8e8e8 !important; }
+      .support-sub { color: #a0a0a0 !important; }
       .support-hours { color: #909090 !important; }
-      .support-phone { color: #3aa9aa !important; }
+      .support-phone { color: #4cc4c5 !important; }
+
+      /* Catch dark text on dark-bg from inline styles */
+      [style*="color:#1a1a1a"], [style*="color: #1a1a1a"] { color: #e8e8e8 !important; }
+      [style*="color:#333"], [style*="color: #333"],
+      [style*="color:#333333"], [style*="color: #333333"] { color: #c0c0c0 !important; }
+      [style*="color:#444"], [style*="color: #444"],
+      [style*="color:#444444"], [style*="color: #444444"] { color: #b0b0b0 !important; }
+      [style*="color:#555"], [style*="color: #555"],
+      [style*="color:#555555"], [style*="color: #555555"] { color: #a0a0a0 !important; }
+      [style*="color:#666"], [style*="color: #666"],
+      [style*="color:#666666"], [style*="color: #666666"] { color: #909090 !important; }
+      [style*="color:#767676"], [style*="color: #767676"],
+      [style*="color:#777"], [style*="color: #777"],
+      [style*="color:#777777"], [style*="color: #777777"] { color: #909090 !important; }
+      [style*="color:#999"], [style*="color: #999"],
+      [style*="color:#999999"], [style*="color: #999999"] { color: #808080 !important; }
+
+      /* === ACCENT (brand teal) === */
       .btn-primary { background-color: #015253 !important; color: #ffffff !important; }
-      .btn-outline { background-color: transparent !important; border-color: #3aa9aa !important; color: #3aa9aa !important; }
-      .payment-card, .tracking-card { background-color: #1a2e1a !important; border-color: #2d5c2d !important; }
-      .payment-title, .tracking-carrier { color: #f0f0f0 !important; }
-      .payment-subtitle { color: #a8a8a8 !important; }
-      .tracking-number { color: #3aa9aa !important; }
+      .btn-outline { background-color: transparent !important; border-color: #4cc4c5 !important; color: #4cc4c5 !important; }
+      a { color: #4cc4c5 !important; }
+      /* Brand-teal inline backgrounds (eg. CTAs) stay branded */
+      [style*="background-color:#015253"], [style*="background-color: #015253"] {
+        background-color: #015253 !important;
+      }
+
+      /* === TINTED CARDS — payment-card, tracking-card === */
+      /* Tone down the bright green left-border accent */
+      .payment-card, .tracking-card {
+        background-color: #1c2520 !important;
+        border-color: #2a2a2a !important;
+        border-left-color: #2d6e6f !important;
+      }
+      .payment-title, .tracking-carrier { color: #e8e8e8 !important; }
+      .payment-subtitle { color: #a0a0a0 !important; }
+      .tracking-number { color: #4cc4c5 !important; }
       .bank-td-label { color: #909090 !important; }
-      .bank-td-value { color: #f0f0f0 !important; }
-      .ref-box { background-color: #1f2522 !important; border-color: #2d5c2d !important; }
+      .bank-td-value { color: #e8e8e8 !important; }
+      .ref-box { background-color: #222222 !important; border-color: #2a2a2a !important; }
       .ref-label { color: #909090 !important; }
-      .ref-code { color: #3aa9aa !important; }
-      .ref-hint { color: #a8a8a8 !important; }
-      .step-num, .tip-num { border-color: #3aa9aa !important; color: #3aa9aa !important; }
-      .step-text { color: #d0d0d0 !important; }
-      .progress-label { color: #3aa9aa !important; }
-      a { color: #3aa9aa !important; }
-      .hero-badge { background-color: #1f3a1f !important; color: #7dc97d !important; }
+      .ref-code { color: #4cc4c5 !important; }
+      .ref-hint { color: #a0a0a0 !important; }
+
+      /* === STEPS / TRACKER === */
+      .step-num, .tip-num { border-color: #4cc4c5 !important; color: #4cc4c5 !important; }
+      .step-text { color: #c0c0c0 !important; }
+      .progress-label { color: #4cc4c5 !important; }
+
+      /* === HERO BADGE (palette-specific override below) === */
+      .hero-badge { background-color: #1a3a1a !important; color: #7dc97d !important; }
     }
 
     @media only screen and (max-width: 680px) {
