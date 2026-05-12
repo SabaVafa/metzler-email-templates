@@ -89,6 +89,34 @@ DARK_COMMON_TEMPLATE = """    /* ── DARK MODE ── */
         background-color: #222222 !important;
       }
 
+      /* Amber alert card (Hinweis zur Zustellung, etc.) */
+      [style*="background-color:#fff8e6"], [style*="background-color: #fff8e6"],
+      [style*="background:#fff8e6"], [style*="background: #fff8e6"] {
+        background-color: #3a2a0d !important;
+      }
+      [style*="border:1px solid #f1dca0"], [style*="border: 1px solid #f1dca0"] {
+        border-color: #5a4a1d !important;
+      }
+      [style*="border-left:4px solid #f0b429"], [style*="border-left: 4px solid #f0b429"] {
+        border-left-color: #a07a30 !important;
+      }
+      [style*="color:#8a5a04"], [style*="color: #8a5a04"],
+      [style*="color:#8a5a00"], [style*="color: #8a5a00"] {
+        color: #e8b860 !important;
+      }
+
+      /* Missing light-tint surfaces */
+      [style*="background-color:#f0f2f0"], [style*="background-color: #f0f2f0"],
+      [style*="background-color:#f5faf7"], [style*="background-color: #f5faf7"],
+      [style*="background:#f0f2f0"], [style*="background: #f0f2f0"],
+      [style*="background:#f5faf7"], [style*="background: #f5faf7"] {
+        background-color: #1c1c1c !important;
+      }
+      [style*="background-color:#e0e0e0"], [style*="background-color: #e0e0e0"],
+      [style*="background:#e0e0e0"], [style*="background: #e0e0e0"] {
+        background-color: #2a2a2a !important;
+      }
+
       /* === BORDERS — neutral dark gray everywhere === */
       [style*="border:1px solid #e8e8e8"], [style*="border: 1px solid #e8e8e8"],
       [style*="border:1px solid #e0e0e0"], [style*="border: 1px solid #e0e0e0"],
