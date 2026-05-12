@@ -573,6 +573,33 @@
       .support-inner { padding-left: 20px !important; padding-right: 20px !important; }
     }
   </style>
+  <!-- PREVIEW-ONLY: defaults browser preview to light mode. Email clients strip <script>
+       so dark @media still works in real inboxes. Append #dark to URL for dark preview.
+       SAFE TO LEAVE IN — has no effect when sent via email. -->
+  <script>
+    (function(){
+      function setMode(){
+        var dark=location.hash==="#dark";
+        for(var i=0;i<document.styleSheets.length;i++){
+          try{
+            var s=document.styleSheets[i];
+            for(var j=0;j<s.cssRules.length;j++){
+              var r=s.cssRules[j];
+              if(r.type===4 && r.media.mediaText.indexOf("prefers-color-scheme: dark")!==-1){
+                r.media.mediaText=dark?"all":"not all";
+              }
+            }
+          }catch(e){}
+        }
+      }
+      if(document.readyState==="loading"){
+        document.addEventListener("DOMContentLoaded",setMode);
+      }else{
+        setMode();
+      }
+      window.addEventListener("hashchange",setMode);
+    })();
+  </script>
 </head>
 <body>
 
