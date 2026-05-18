@@ -4,6 +4,60 @@ Paste this at the start of a new session, then say *"continue from this handoff 
 
 ---
 
+## 🆕 Updates — May 2026 session
+
+Substantial polish + dark-mode work completed. **Read [`DARK-MODE.md`](DARK-MODE.md)** for the dark-mode developer handoff.
+
+### Structural
+- **Canvas widened 568 → 640 px** across all 28 templates (`scripts/width-pass-640.py`). Mobile breakpoint 620 → 680. Rationale: 3-col upsell + 5-step tracker were cramped.
+- **Upsell moved 06 → 05** — Blumenkasten cross-sell now lives in `track-trace.html`, not `delivered.html`.
+- **production-guide section order swapped** — "Aus der Manufaktur" tips now lead, "Ihre Artikel" recap follows.
+- **`delivered.html` cleanups** — "Alles passt?" damage-check section removed.
+- **`review-request.html` + `review-confirmation.html`** — closing "TEAM NOTE" sign-off paragraphs removed.
+
+### Dark mode (full implementation)
+- v1 → v2 → multiple patches. Final: neutral palette (`#121212` body / `#1c1c1c` card / `#222` highlight), brand teal preserved for accents, lighter teal `#4cc4c5` for interactive text on dark. See `docs/DARK-MODE.md`.
+- Light mode CSS untouched throughout — dark lives in `@media (prefers-color-scheme: dark)` block.
+- **Preview-only JS shim** (`<script>` block in `<head>` of each template) forces light mode in local browser preview. Email clients strip `<script>` so dark mode still works in real inboxes. Append `#dark` to URL for dark preview.
+- Tooling: `scripts/dark-mode-pass-v2.py` (idempotent, palette-aware).
+
+### Legal / footer
+- **Contact email**: `info@edelstahl-tuerklingel.de` → **`service@metzlergmbh.de`** across all 28
+- **Address**: confirmed → **Täleswiesenstrasse 9** (was placeholder Tübingerstraße)
+- **Legal IDs**: HRB 768215 · Amtsgericht **Stuttgart** (corrected from Reutlingen) · USt-IdNr DE322754305 · WEEE DE 63539391
+- **Phone hotline**: updated to **+49 (0) 7121 / 317 7310 · Mo–Fr.: 09:00–16:00 Uhr** everywhere (tel:+4971213177310)
+- **Footer legal-link order** aligned with website: `Datenschutz · AGB · Impressum · Batterieentsorgungsgesetz · Widerrufsrecht · Hinweise zur Elektroaltgeräteentsorgung`
+- **Footer copyright**: `© 2013 – 2026 | Metzler GmbH` (dropped "Alle Rechte vorbehalten")
+- **§35a GmbHG line** simplified: `Geschäftsführer: Denis Metzler · Amtsgericht Stuttgart · HRB 768215 · USt-IdNr.: DE322754305` (WEEE moved to linked Impressum)
+- **"E-Mails abbestellen" link removed** from order-confirmation, gutschein, review-request (transactional emails always sent — misleading to imply unsubscribe)
+
+### Frozen final decisions
+- **§7(3) UWG opt-out link** ("Keine Empfehlungen mehr erhalten") permanently removed from upsell templates (track-trace + production-guide). Legal risk acknowledged + accepted. Do NOT propose re-adding.
+- **Werkstatt → Manufaktur** global swap in customer-visible text
+- **"Was passiert als nächstes?" → "Bestellfortschritt"** in 6 progress-tracker templates only (3 non-tracker templates kept original heading or got contextual rename)
+- **Newsletter block heading + intro** rewritten to "Newsletter abonnieren / Verpassen Sie keine Angebote…" in 4 promotional templates
+- **Upsell heading**: "Empfehlung aus unserer Manufaktur" → **"Das könnte Ihnen auch gefallen"**
+- **Upsell intro**: rewritten to *"Passend zu Ihrer Bestellung: unsere pulverbeschichteten Blumenkästen aus Stahl — in großer Farbauswahl, passend zu Ihrem Briefkasten."* ⚠️ Note: 3 cards still all RAL 7016 — copy says "Farbauswahl" but cards aren't diversified yet
+
+### Copy refinements (iterative — user-driven, one-by-one)
+~47 numbered copy refinements applied across hero subtitles, section headings, body paragraphs. Templates touched: order-confirmation, payment-confirmation, production-guide (5+ sections), production-delay, invoice-delivery, track-trace, delivered, review-request, review-confirmation, gutschein, widerrufsbestaetigung.
+
+The 3 "Was passiert als nächstes?" sections in contact-form-confirmation / product-question-confirmation / review-confirmation were **converted from paragraphs to bulleted-list format** (matches registration-welcome pattern: `&bull;&nbsp;` prefix + `line-height:1.7`).
+
+### Tooling new this session
+- `scripts/width-pass-640.py` — canvas widen, idempotent
+- `scripts/dark-mode-pass-v2.py` — full dark-mode block, idempotent + palette-aware
+- `scripts/dark-mode-pass.py` (v1, superseded)
+- `scripts/contact-update-2026-05.py` — phone + hours rewrite
+
+### Pending follow-ups flagged this session
+- **Upsell card diversification**: cards still all RAL 7016 Anthrazit, copy promises "großer Farbauswahl"
+- **Preheader sync**: production-delay preheader matches new hero (done), but consider whether subject/`<title>` should also update on the hero-rewritten templates (currently flagged as "leave as-is" in commit msgs)
+- **Image hosting** still blocked (the `werkstatt-einblick.png` thumbnail in production-delay is 488px native but now stretched to 584px — slight blur risk; needs higher-res asset before launch)
+- **Inconsistency to flag with web team**: shop-website Impressum still shows OLD phone number (+4971213179114) — email footer uses correct new number
+
+---
+
 ## ⚠️ Priority #1: Consistency
 
 Consistency across all 28 templates outranks individual-template polish. Every decision must be checked against the existing cluster first. Reuse canonical blocks, established phrasings, hero patterns, design tokens, and section structures. Backport new better patterns to siblings. The customer reads all 28 emails as one ongoing conversation with one brand; one outlier breaks the spell.
