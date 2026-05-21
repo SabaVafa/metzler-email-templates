@@ -511,7 +511,7 @@
       /* === DELIVERY / TOTALS / TEMPLATE-SPECIFIC CLASS OVERRIDES === */
       .del-col-label, .del-eta-note { color: #909090 !important; }
       .del-address { color: #c0c0c0 !important; }
-      .del-eta { color: #4cc4c5 !important; }
+      .del-eta { color: #ffffff !important; }
       .totals-sep-l { color: #a0a0a0 !important; }
       .totals-sep-r { color: #c0c0c0 !important; }
       .free-shipping { color: #5dc97d !important; }
@@ -527,7 +527,7 @@
       .ops-value { color: #e8e8e8 !important; }
       .internal-note { color: #909090 !important; }
       .internal-note strong { color: #c0c0c0 !important; }
-      .support-phone { color: #4cc4c5 !important; }
+      .support-phone { color: #ffffff !important; }
 
       /* Catch dark text on dark-bg from inline styles */
       [style*="color:#1a1a1a"], [style*="color: #1a1a1a"] { color: #e8e8e8 !important; }
@@ -547,20 +547,20 @@
 
       /* Brand teal text on dark bg — brighten for readability (CTAs/buttons keep brand bg) */
       [style*="color:#015253"], [style*="color: #015253"] {
-        color: #4cc4c5 !important;
+        color: #ffffff !important;
       }
       [style*="border:2px dashed #015253"], [style*="border: 2px dashed #015253"],
       [style*="border:1px dashed #015253"], [style*="border: 1px dashed #015253"] {
-        border-color: #4cc4c5 !important;
+        border-color: #ffffff !important;
       }
       [style*="border:1px dashed #aecbae"], [style*="border: 1px dashed #aecbae"] {
-        border-color: #4cc4c5 !important;
+        border-color: #ffffff !important;
       }
 
       /* === ACCENT (brand teal) === */
       .btn-primary { background-color: #015253 !important; color: #ffffff !important; }
-      .btn-outline { background-color: transparent !important; border-color: #4cc4c5 !important; color: #4cc4c5 !important; }
-      a { color: #4cc4c5 !important; }
+      .btn-outline { background-color: transparent !important; border-color: #ffffff !important; color: #ffffff !important; }
+      a { color: #ffffff !important; }
       /* Brand-teal inline backgrounds (eg. CTAs) stay branded */
       [style*="background-color:#015253"], [style*="background-color: #015253"] {
         background-color: #015253 !important;
@@ -575,24 +575,38 @@
       }
       .payment-title, .tracking-carrier { color: #e8e8e8 !important; }
       .payment-subtitle { color: #a0a0a0 !important; }
-      .tracking-number { color: #4cc4c5 !important; }
+      .tracking-number { color: #ffffff !important; }
       .bank-td-label { color: #909090 !important; }
       .bank-td-value { color: #e8e8e8 !important; }
       .ref-box { background-color: #222222 !important; border-color: #2a2a2a !important; }
       .ref-label { color: #909090 !important; }
-      .ref-code { color: #4cc4c5 !important; }
+      .ref-code { color: #ffffff !important; }
       .ref-hint { color: #a0a0a0 !important; }
 
       /* === STEPS / TRACKER === */
-      .step-num, .tip-num { border-color: #4cc4c5 !important; color: #4cc4c5 !important; }
+      .step-num, .tip-num { border-color: #ffffff !important; color: #ffffff !important; }
       .step-text { color: #c0c0c0 !important; }
-      .progress-label { color: #4cc4c5 !important; }
+      .progress-label { color: #ffffff !important; }
 
       /* === HERO BADGE (palette-specific override below) === */
       .hero-badge { background-color: #1a3a1a !important; color: #7dc97d !important; }
     }
 
     @media only screen and (max-width: 680px) {
+      .ops-meta-table { table-layout: fixed !important; }
+      .ops-meta-row td { word-break: break-word !important; overflow-wrap: break-word !important; }
+      .progress-tracker, .progress-circles { table-layout: fixed !important; }
+      .progress-tracker-inner { padding: 20px 8px !important; }
+      #bodyTable, .card, .support-inner { table-layout: fixed !important; }
+      body, #bodyTable { overflow-x: hidden !important; }
+      .card, .card-wrap { max-width: 100% !important; box-sizing: border-box !important; }
+      table { max-width: 100% !important; }
+      img { max-width: 100% !important; height: auto !important; }
+      .payment-card, .tracking-card, .ref-code, .ref-label { word-break: break-word !important; overflow-wrap: break-word !important; }
+      .product-name, .product-sku { word-break: break-word !important; overflow-wrap: break-word !important; }
+      .order-table-wrap { display: block !important; max-width: 100% !important; width: 100% !important; overflow-x: auto !important; }
+      .order-table, .totals-table { table-layout: fixed !important; width: 100% !important; }
+      .card, .support-inner { width: 100% !important; max-width: 100% !important; }
       .card { margin-left: 0 !important; margin-right: 0 !important; border-radius: 0 !important; }
       .card-wrap { padding: 0 !important; }
       .support-block { padding: 0 !important; }
