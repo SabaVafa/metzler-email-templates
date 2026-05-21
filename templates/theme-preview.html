@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theme &amp; Viewport Preview &mdash; Metzler Emails</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { height: 100%; }
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      background: #f2f4f2;
+      transition: background-color .25s ease;
+      padding-top: 64px;
+    }
+    body.dark { background: #121212; }
+
+    .toolbars {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 12px 20px;
+      background: rgba(242, 244, 242, 0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid #e6ebe6;
+    }
+    body.dark .toolbars {
+      background: rgba(18, 18, 18, 0.92);
+      border-bottom-color: #2a2a2a;
+    }
+
+    .label {
+      font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      color: #767676;
+      white-space: nowrap;
+    }
+    body.dark .label { color: #9a9a9a; }
+    .label .back { color: inherit; text-decoration: none; opacity: 0.7; }
+    .label .back:hover { opacity: 1; }
+    .label .sep { margin: 0 8px; opacity: 0.4; }
+
+    .controls { display: flex; gap: 10px; align-items: center; }
+
+    .pill {
+      background: #ffffff;
+      border: 1px solid #e6ebe6;
+      border-radius: 999px;
+      padding: 4px;
+      display: inline-flex;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    body.dark .pill {
+      background: #1c1c1c;
+      border-color: #2a2a2a;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+    .pill button {
+      font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 8px 14px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: #767676;
+      cursor: pointer;
+      transition: background-color .2s, color .2s;
+      white-space: nowrap;
+    }
+    body.dark .pill button { color: #9a9a9a; }
+    .pill button.active { background: #015253; color: #ffffff; }
+    body.dark .pill button.active { background: #4cc4c5; color: #121212; }
+
+    .stage {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 20px 16px 40px;
+      min-height: calc(100vh - 64px);
+    }
+
+    .device {
+      background: #ffffff;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.10);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: width .25s ease;
+      flex: 0 0 auto;
+      min-width: 0;
+    }
+    body.dark .device { box-shadow: 0 4px 24px rgba(0,0,0,0.45); }
+
+    .device.mobile  { width: 375px;  max-width: 375px; }
+    .device.tablet  { width: 768px;  max-width: 768px; }
+    .device.desktop { width: min(720px, 100%); max-width: 720px; }
+
+    iframe {
+      width: 100%;
+      height: calc(100vh - 100px);
+      border: 0;
+      display: block;
+    }
+
+    .error {
+      max-width: 480px;
+      margin: 80px auto;
+      padding: 24px;
+      background: #fff;
+      border: 1px solid #e6ebe6;
+      border-radius: 6px;
+      font-size: 14px;
+      color: #555;
+      line-height: 1.6;
+    }
+    .error code { background: #eef2ee; padding: 2px 6px; border-radius: 3px; font-size: 12px; }
+
+    @media (max-width: 720px) {
+      .toolbars { flex-wrap: wrap; gap: 10px; padding: 10px 14px; }
+      body { padding-top: 96px; }
+      .stage { min-height: calc(100vh - 96px); }
+    }
+  </style>
+</head>
+<body>
+  <div class="toolbars">
+    <div class="label">
+      <a class="back" href="../index.html">&larr; Index</a>
+      <span class="sep">/</span>
+      <span id="label-name">&hellip;</span>
+    </div>
+    <div class="controls">
+      <div class="pill" role="group" aria-label="Viewport">
+        <button id="vp-mobile" type="button" aria-pressed="false">Mobile</button>
+        <button id="vp-tablet" type="button" aria-pressed="false">Tablet</button>
+        <button id="vp-desktop" class="active" type="button" aria-pressed="true">Desktop</button>
+      </div>
+      <div class="pill" role="group" aria-label="Theme">
+        <button id="btn-light" class="active" type="button" aria-pressed="true">Light</button>
+        <button id="btn-dark" type="button" aria-pressed="false">Dark</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="stage" id="stage">
+    <div id="container" style="width:100%; display:flex; justify-content:center;"></div>
+  </div>
+
+  <script>
+    /*
+      Generic preview wrapper with Light/Dark + Mobile/Tablet/Desktop toggles.
+      Usage: theme-preview.html?template=<filename-without-html>
+      Dark mode uses the in-template @media (prefers-color-scheme: dark) + #dark URL hash shim.
+      Viewport just constrains the iframe's container width; the email's own @media (max-width:680px)
+      activates naturally when the container drops below 680px.
+      See docs/DARK-MODE.md
+    */
+    const ALLOWED = new Set([
+      'order-confirmation','payment-confirmation','production-guide','production-delay',
+      'invoice-delivery','track-trace','track-trace-delay','delivered','review-request',
+      'review-confirmation','gutschein','widerrufsbestaetigung','product-question-confirmation',
+      'password-reset','registration-verify','registration-welcome','account-deletion',
+      'newsletter-activation','back-in-stock-doi','contact-form-confirmation',
+      'account-created-by-admin','customer-group-assignment','amazon-pay-soft-decline',
+      'amazon-pay-hard-decline','amazon-pay-info','zahlungs-erinnerung',
+      'zahlungsinformationen-vorkasse','paypal-zahlung-abgelehnt'
+    ]);
+
+    const params = new URLSearchParams(window.location.search);
+    const templateName = params.get('template') || 'order-confirmation';
+    const container = document.getElementById('container');
+    const labelName = document.getElementById('label-name');
+    const btnLight = document.getElementById('btn-light');
+    const btnDark = document.getElementById('btn-dark');
+    const vpMobile = document.getElementById('vp-mobile');
+    const vpTablet = document.getElementById('vp-tablet');
+    const vpDesktop = document.getElementById('vp-desktop');
+
+    if (!ALLOWED.has(templateName)) {
+      container.innerHTML = '<div class="error">Unknown template: <code>' + templateName + '</code>. ' +
+        'Use <code>?template=order-confirmation</code> or any other valid template name. ' +
+        '<a href="../index.html">Back to index</a>.</div>';
+      document.title = 'Unknown template — Metzler';
+    } else {
+      labelName.textContent = templateName;
+      document.title = templateName + ' — Preview';
+
+      const device = document.createElement('div');
+      device.className = 'device desktop';
+      device.id = 'device';
+
+      const iframe = document.createElement('iframe');
+      iframe.id = 'email';
+      iframe.title = templateName + ' email preview';
+      iframe.src = templateName + '.html';
+
+      device.appendChild(iframe);
+      container.appendChild(device);
+
+      let currentTheme = 'light';
+      let currentViewport = 'desktop';
+
+      function setTheme(theme) {
+        if (theme === currentTheme) return;
+        currentTheme = theme;
+        const isDark = theme === 'dark';
+        iframe.src = templateName + '.html?t=' + Date.now() + (isDark ? '#dark' : '');
+        document.body.classList.toggle('dark', isDark);
+        btnDark.classList.toggle('active', isDark);
+        btnLight.classList.toggle('active', !isDark);
+        btnDark.setAttribute('aria-pressed', String(isDark));
+        btnLight.setAttribute('aria-pressed', String(!isDark));
+      }
+
+      function setViewport(vp) {
+        if (vp === currentViewport) return;
+        currentViewport = vp;
+        device.className = 'device ' + vp;
+        [['mobile', vpMobile], ['tablet', vpTablet], ['desktop', vpDesktop]].forEach(([name, btn]) => {
+          const active = name === vp;
+          btn.classList.toggle('active', active);
+          btn.setAttribute('aria-pressed', String(active));
+        });
+      }
+
+      btnLight.addEventListener('click', () => setTheme('light'));
+      btnDark.addEventListener('click',  () => setTheme('dark'));
+      vpMobile.addEventListener('click', () => setViewport('mobile'));
+      vpTablet.addEventListener('click', () => setViewport('tablet'));
+      vpDesktop.addEventListener('click', () => setViewport('desktop'));
+    }
+  </script>
+</body>
+</html>
