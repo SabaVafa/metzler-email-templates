@@ -59,6 +59,11 @@
     .section { padding: 28px 40px; border-bottom: 1px solid #f0f0f0; }
     .section-label { font-family: 'Montserrat','Helvetica Neue',Arial,sans-serif; font-size: 12px; font-weight: 700; color: #555; letter-spacing: 1.4px; text-transform: uppercase; margin-bottom: 18px; }
 
+    .del-col-label { font-size: 12px; font-weight: 700; color: #767676; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 9px; }
+    .del-address { font-size: 14px; color: #444; line-height: 1.8; }
+    .kv-label { font-size: 12px; font-weight: 700; color: #767676; letter-spacing: 0.5px; margin-bottom: 2px; }
+    .kv-value { font-size: 13px; color: #1a1a1a; }
+
     .support-block { max-width: 640px; margin: 0 auto; padding: 0 16px; }
     .support-title { font-family: 'Montserrat','Helvetica Neue',Arial,sans-serif; font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
     .support-sub { font-size: 14px; color: #777; margin-bottom: 20px; line-height: 1.55; }
@@ -270,6 +275,7 @@
     }
 
     @media only screen and (max-width: 680px) {
+      .del-left, .del-right { display: block !important; width: 100% !important; padding-left: 0 !important; padding-right: 0 !important; border-right: none !important; padding-bottom: 20px !important; }
       .ops-meta-table { table-layout: fixed !important; }
       .ops-meta-row td { word-break: break-word !important; overflow-wrap: break-word !important; }
       .progress-tracker, .progress-circles { table-layout: fixed !important; }
@@ -332,7 +338,7 @@
 <body>
 
 <div class="preheader">
-  Wir haben f&uuml;r Sie ein Kundenkonto angelegt. Vergeben Sie kurz Ihr Passwort, dann ist alles bereit.&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+  Wir haben f&uuml;r Sie ein Kundenkonto angelegt &ndash; zur Kontrolle finden Sie unten Ihre hinterlegten Daten.&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
 </div>
 
 <!--
@@ -348,29 +354,31 @@
     - Migrated accounts (data import from a legacy system)
     - Service intervention by support
 
-  IMPORTANT — wording context:
-    The hero subtitle says 'Auf Ihren Wunsch hin haben wir ein Kundenkonto
-    für Sie angelegt.' This assumes the customer ASKED for the account.
-    If the trigger fires for a context where the customer did NOT request
-    it (e.g., automatic data migration), use a different subtitle to avoid
-    misleading framing.
-
   Legal:
     - Per Art. 13 DSGVO, the data subject must be informed when an account
-      with personal data is created. This email satisfies that obligation.
-    - The "Sie haben kein Konto angefordert?" section MUST link the customer
-      to support (not 'ignore this email') because misattributed accounts
-      need correction (Art. 16 / 17 DSGVO).
+      with personal data is created. This email satisfies that obligation —
+      the "Ihre Kundendaten" section echoes back exactly what was stored.
+    - For misattributed accounts, customer can use the support block at the
+      bottom of the email to request correction (Art. 16 / 17 DSGVO).
 
-  Security:
-    - {$passwortFestlegenURL} MUST embed a cryptographically random,
-      single-use token (32+ bytes), HTTPS only, expires after 24 hours.
-    - The customer's account is created WITHOUT a password; the link sets
-      it for the first time.
+  Password setup:
+    - The customer's account is created WITHOUT a password.
+    - {$passwortVergessenURL} points to the public "Passwort vergessen" page,
+      ideally pre-filled with the customer's email:
+        {$shopURL}/Passwort-vergessen?email={$kunde->cMail|urlencode}
+    - JTL handles tokenization and expiry server-side on that page.
 
   Placeholders:
-    {$passwortFestlegenURL}  — one-time password-set link (24-hour expiry)
-    {$Kunde->kKunde}         — customer number (optional, for the meta card)
+    {$passwortVergessenURL}  — public Passwort-vergessen page URL (email pre-filled)
+    {$kunde->cVorname}, {$kunde->cNachname}     — customer name
+    {$kunde->cStrasse}, {$kunde->cHausnummer}   — street + house number
+    {$kunde->cAdressZusatz}                     — address line 2 (optional)
+    {$kunde->cPLZ}, {$kunde->cOrt}              — postal code + city
+    {$kunde->cBundesland}                       — state (optional)
+    {$kunde->cLand}                             — country
+    {$kunde->cMail}                             — email address
+    {$kunde->cTel}, {$kunde->cMobil}, {$kunde->cFax}  — contact (all optional)
+    {$kunde->cUSTID}                            — VAT-ID (optional)
 -->
 
 <table id="bodyTable" width="100%" cellpadding="0" cellspacing="0" role="presentation" bgcolor="#f2f4f2">
@@ -410,54 +418,31 @@
 
             <!-- HERO -->
             <tr>
-              <td class="hero" bgcolor="#f7f9f7" style="padding-bottom:16px;">
+              <td class="hero" bgcolor="#f7f9f7" style="padding-bottom:26px;">
 
                 <div class="hero-badge">Konto eingerichtet</div>
 
                 <h1 class="hero-title">Ihr Kundenkonto bei Metzler ist eingerichtet.</h1>
 
                 <p class="hero-subtitle">
-                  Auf Ihren Wunsch hin haben wir ein Kundenkonto f&uuml;r Sie angelegt. Vergeben Sie kurz Ihr Passwort &uuml;ber den Button unten &ndash; der Link ist <strong style="color:#1a1a1a;">24 Stunden</strong> g&uuml;ltig.
+                  Bitte setzen Sie mit Hilfe der &bdquo;Passwort vergessen&ldquo;-Funktion ein neues Passwort.
                 </p>
 
                 <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:6px; background-color:#ffffff; overflow:hidden;">
 
-                  <!-- Row 1: Eingerichtet am + Gültig bis -->
-                  <tr>
-                    <td style="padding:10px; background-color:#f7f9f7; border-bottom:1px solid #e8ece8;">
-                      <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
-                        <tr>
-                          <td class="meta-col" style="width:50%; vertical-align:middle;">
-                            <div style="background-color:#ffffff; border:1px solid #e8ece8; border-radius:4px; padding:12px 16px;">
-                              <div class="meta-label" style="margin-bottom:4px;">Eingerichtet am</div>
-                              <div class="meta-value-light">22. Dezember 2024, 14:37&nbsp;Uhr</div>
-                            </div>
-                          </td>
-                          <td class="meta-col-spacer" style="width:10px;">&nbsp;</td>
-                          <td class="meta-col" style="width:50%; vertical-align:middle;">
-                            <div style="background-color:#ffffff; border:1px solid #e8ece8; border-radius:4px; padding:12px 16px;">
-                              <div class="meta-label" style="margin-bottom:4px;">G&uuml;ltig bis</div>
-                              <div class="meta-value">23. Dezember 2024, 14:37&nbsp;Uhr</div>
-                            </div>
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-
-                  <!-- Row 2: CTA -->
+                  <!-- Row: CTA -->
                   <tr>
                     <td style="padding:14px 10px 10px; background-color:#f7f9f7; text-align:center;">
                       <!--[if mso]>
                       <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"
-                        href="{$passwortFestlegenURL}" style="height:44px;v-text-anchor:middle;width:200px;" arcsize="11%"
+                        href="{$passwortVergessenURL}" style="height:44px;v-text-anchor:middle;width:200px;" arcsize="11%"
                         fillcolor="#015253" strokecolor="#015253">
                         <w:anchorlock/>
                         <center style="color:#ffffff;font-family:Arial,sans-serif;font-size:14px;font-weight:600;">Passwort festlegen</center>
                       </v:roundrect>
                       <![endif]-->
                       <!--[if !mso]><!-->
-                      <a href="{$passwortFestlegenURL}" target="_blank" class="btn-primary"
+                      <a href="{$passwortVergessenURL}" target="_blank" class="btn-primary"
                          style="display:inline-block; background-color:#015253; color:#ffffff; font-family:'Montserrat','Helvetica Neue',Arial,sans-serif; font-size:14px; font-weight:600; letter-spacing:0.5px; padding:13px 30px; border-radius:5px; text-decoration:none; text-align:center;">
                         Passwort festlegen
                       </a>
@@ -470,38 +455,83 @@
               </td>
             </tr>
 
-            <!-- WAS SIE AB JETZT ERWARTET -->
+            <!-- IHRE KUNDENDATEN -->
+            <!--
+              DEV (JTL-Shop 5): Smarty vars to inject into each value cell:
+                Anschrift     = {$kunde->cVorname} {$kunde->cNachname}
+                                {$kunde->cStrasse} {$kunde->cHausnummer}
+                                {$kunde->cAdressZusatz}   ← {if $kunde->cAdressZusatz}...{/if}
+                                {$kunde->cPLZ} {$kunde->cOrt}
+                                {$kunde->cBundesland}     ← {if $kunde->cBundesland}...{/if}
+                                {$kunde->cLand}
+                E-Mail        = {$kunde->cMail}
+                Telefon       = {$kunde->cTel}            ← wrap row in {if $kunde->cTel}...{/if}
+                Mobil         = {$kunde->cMobil}          ← wrap row in {if $kunde->cMobil}...{/if}
+                Fax           = {$kunde->cFax}            ← wrap row in {if $kunde->cFax}...{/if}
+                USt-ID        = {$kunde->cUSTID}          ← wrap row in {if $kunde->cUSTID}...{/if}
+            -->
             <tr>
               <td class="section">
-                <h2 class="section-label">Was Sie ab jetzt erwartet</h2>
+                <h2 class="section-label">Ihre Kundendaten</h2>
 
-                <p style="font-size:14px; color:#555; line-height:1.7; margin:0 0 10px;">
-                  &bull;&nbsp; Alle Bestellungen und Rechnungen finden Sie zentral unter <strong style="color:#1a1a1a;">Mein Konto</strong>.
+                <p style="font-size:14px; color:#555; line-height:1.7; margin:0 0 20px;">
+                  Zur Kontrolle hier noch einmal Ihre Kundendaten:
                 </p>
-                <p style="font-size:14px; color:#555; line-height:1.7; margin:0;">
-                  &bull;&nbsp; Bei k&uuml;nftigen Bestellungen sind Ihre Daten bereits hinterlegt.
-                </p>
+
+                <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
+                  <tr>
+                    <td class="del-left" style="width:50%; vertical-align:top; padding-right:24px; border-right:1px solid #f0f0f0;">
+                      <div class="del-col-label">Anschrift</div>
+                      <div style="font-size:13px; font-weight:600; color:#1a1a1a; margin-bottom:2px;">Max Mustermann</div>
+                      <div class="del-address" style="font-size:13px; line-height:1.85;">
+                        Musterstrasse 123<br />
+                        Linker Hof<br />
+                        12345 Musterstadt<br />
+                        NRW<br />
+                        Musterland
+                      </div>
+                    </td>
+                    <td class="del-right" style="width:50%; vertical-align:top; padding-left:24px;">
+                      <div class="del-col-label">Kontakt</div>
+
+                      <div style="margin-bottom:10px;">
+                        <div class="kv-label">E-Mail</div>
+                        <div class="kv-value">s.vafakhah@metzlergmbh.de</div>
+                      </div>
+                      <div style="margin-bottom:10px;">
+                        <div class="kv-label">Telefon</div>
+                        <div class="kv-value">12** ***5678</div>
+                      </div>
+                      <div style="margin-bottom:10px;">
+                        <div class="kv-label">Mobil</div>
+                        <div class="kv-value">01** ***2234</div>
+                      </div>
+                      <div style="margin-bottom:10px;">
+                        <div class="kv-label">Fax</div>
+                        <div class="kv-value">98** ***5432</div>
+                      </div>
+                      <div>
+                        <div class="kv-label">USt-ID</div>
+                        <div class="kv-value">ust234</div>
+                      </div>
+                    </td>
+                  </tr>
+                </table>
 
               </td>
             </tr>
 
-            <!-- SICHERHEITSHINWEIS -->
-            <tr>
-              <td class="section">
-                <h2 class="section-label">Sie haben kein Konto angefordert?</h2>
-
-                <p style="font-size:14px; color:#555; line-height:1.7; margin:0;">
-                  Falls dieses Konto irrt&uuml;mlich angelegt wurde, melden Sie sich kurz bei uns. Wir kl&auml;ren das umgehend mit Ihnen.
-                </p>
-
-              </td>
-            </tr>
-
-            <!-- TEAM NOTE -->
+            <!-- WELCOME CLOSING -->
             <tr>
               <td class="section" style="padding-top:22px; padding-bottom:32px; border-bottom:none;">
-                <p style="font-size:14px; color:#555; line-height:1.7; margin-bottom:10px;">
-                  Wir freuen uns, dass Sie nun Teil von Metzler sind.
+                <p style="font-size:14px; color:#555; line-height:1.7; margin:0 0 14px;">
+                  Mit diesen Daten k&ouml;nnen Sie sich ab sofort in Ihrem pers&ouml;nlichen Kundenkonto anmelden und den aktuellen Status Ihrer Bestellungen verfolgen.
+                </p>
+                <p style="font-size:14px; color:#555; line-height:1.7; margin:0 0 14px;">
+                  Wir freuen uns sehr, Sie als neuen Kunden bei uns begr&uuml;&szlig;en zu d&uuml;rfen. Wenn Sie Fragen zu unserem Angebot oder speziellen Produkten haben, nehmen Sie einfach Kontakt mit uns auf.
+                </p>
+                <p style="font-size:14px; color:#555; line-height:1.7; margin:0 0 16px;">
+                  Wir w&uuml;nschen Ihnen viel Spa&szlig; beim St&ouml;bern in unserem Sortiment.
                 </p>
                 <p style="font-size:13px; color:#015253; font-weight:600; font-style:italic; margin:0;">
                   &mdash; Ihr Team von Metzler

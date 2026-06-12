@@ -405,14 +405,14 @@
 
             <!-- HERO -->
             <tr>
-              <td class="hero" bgcolor="#f7f9f7">
+              <td class="hero" bgcolor="#f7f9f7" style="padding-bottom:26px;">
 
                 <div class="hero-badge">Kundengruppe aktualisiert</div>
 
-                <h1 class="hero-title">Ihre Kundengruppe bei Metzler ist aktualisiert.</h1>
+                <h1 class="hero-title">Ihre Kundengruppe wurde aktualisiert.</h1>
 
                 <p class="hero-subtitle">
-                  Sie wurden in die Gruppe <strong style="color:#1a1a1a;">Wholesale</strong> aufgenommen. Was das f&uuml;r Sie bedeutet, finden Sie unten.
+                  Wir haben Ihre Kundengruppe ge&auml;ndert. Ab sofort sollten Ihnen andere Preise angezeigt werden. Ist dies nicht der Fall, melden Sie sich bitte ab und loggen sich dann erneut ein.
                 </p>
 
                 <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:6px; background-color:#ffffff; overflow:hidden;">
@@ -430,7 +430,7 @@
                           <td class="meta-col" style="width:50%; vertical-align:middle;">
                             <div style="background-color:#ffffff; border:1px solid #e8ece8; border-radius:4px; padding:12px 16px;">
                               <div class="meta-label" style="margin-bottom:4px;">Neue Gruppe</div>
-                              <div class="meta-value">Wholesale</div>
+                              <div class="meta-value">{$kundengruppe->cName}</div>
                             </div>
                           </td>
                         </tr>
@@ -442,95 +442,6 @@
               </td>
             </tr>
 
-            <!-- WAS SICH FÜR SIE ÄNDERT -->
-            <tr>
-              <td class="section">
-                <h2 class="section-label">Was sich f&uuml;r Sie &auml;ndert</h2>
-
-                <!--
-                  DEV (JTL-Shop 5): wrap each variant block in a Smarty conditional.
-                  Example:
-                    {if $kundengruppe == 'b2b'}
-                      ...Wholesale block...
-                    {elseif $kundengruppe == 'vip'}
-                      ...VIP block...
-                    {elseif $kundengruppe == 'installer'}
-                      ...Installer block...
-                    {else}
-                      ...Default block...
-                    {/if}
-                  The Wholesale block below renders by default for QA preview.
-                -->
-
-                <!-- ── Variant: Wholesale / B2B ── -->
-                <p style="font-size:14px; color:#555; line-height:1.7; margin:0 0 10px;">
-                  &bull;&nbsp; Netto-Preise (zzgl. USt.) auf alle Produkte.
-                </p>
-                <p style="font-size:14px; color:#555; line-height:1.7; margin:0 0 10px;">
-                  &bull;&nbsp; Erh&ouml;hte Bestellmengen mit gestaffelten Mengenrabatten.
-                </p>
-                <p style="font-size:14px; color:#555; line-height:1.7; margin:0;">
-                  &bull;&nbsp; Verl&auml;ngertes Zahlungsziel (Rechnungskauf, 14&nbsp;Tage).
-                </p>
-
-                <!--
-                  ── Variant: VIP / Preferred customer ──
-                  <p style="font-size:14px; color:#555; line-height:1.7; margin:0 0 10px;">
-                    &bull;&nbsp; 10&nbsp;% Sonderrabatt auf alle Bestellungen.
-                  </p>
-                  <p style="font-size:14px; color:#555; line-height:1.7; margin:0 0 10px;">
-                    &bull;&nbsp; Vorrang bei der Fertigung &mdash; k&uuml;rzere Lieferzeiten.
-                  </p>
-                  <p style="font-size:14px; color:#555; line-height:1.7; margin:0;">
-                    &bull;&nbsp; Direkter pers&ouml;nlicher Ansprechpartner.
-                  </p>
-
-                  ── Variant: Installer / Handwerker ──
-                  <p style="font-size:14px; color:#555; line-height:1.7; margin:0 0 10px;">
-                    &bull;&nbsp; Handwerker-Rabatt auf alle Produkte.
-                  </p>
-                  <p style="font-size:14px; color:#555; line-height:1.7; margin:0 0 10px;">
-                    &bull;&nbsp; Fachberatung f&uuml;r Mehrobjekt-Auftr&auml;ge.
-                  </p>
-                  <p style="font-size:14px; color:#555; line-height:1.7; margin:0;">
-                    &bull;&nbsp; Schnellere Lieferzeiten bei gr&ouml;&szlig;eren Mengen.
-                  </p>
-
-                  ── Variant: Default (group is none of the above) ──
-                  <p style="font-size:14px; color:#555; line-height:1.7; margin:0 0 10px;">
-                    &bull;&nbsp; Aktuelle Konditionen finden Sie unter <strong style="color:#1a1a1a;">Mein Konto</strong>.
-                  </p>
-                  <p style="font-size:14px; color:#555; line-height:1.7; margin:0;">
-                    &bull;&nbsp; Bei Fragen melden Sie sich gerne pers&ouml;nlich bei uns.
-                  </p>
-                -->
-
-              </td>
-            </tr>
-
-            <!-- KONTAKT BEI FRAGEN -->
-            <tr>
-              <td class="section">
-                <h2 class="section-label">Sie haben hierzu Fragen?</h2>
-
-                <p style="font-size:14px; color:#555; line-height:1.7; margin:0;">
-                  Falls Sie zu dieser &Auml;nderung Fragen haben oder sie unerwartet kommt, melden Sie sich kurz bei uns.
-                </p>
-
-              </td>
-            </tr>
-
-            <!-- TEAM NOTE -->
-            <tr>
-              <td class="section" style="padding-top:22px; padding-bottom:32px; border-bottom:none;">
-                <p style="font-size:14px; color:#555; line-height:1.7; margin-bottom:10px;">
-                  Wir freuen uns, Ihre Gesch&auml;ftsbeziehung mit Metzler weiter auszubauen.
-                </p>
-                <p style="font-size:13px; color:#015253; font-weight:600; font-style:italic; margin:0;">
-                  &mdash; Ihr Team von Metzler
-                </p>
-              </td>
-            </tr>
 
           </table><!-- /card -->
         </td>

@@ -335,34 +335,33 @@
 <body>
 
 <div class="preheader">
-  Best&auml;tigen Sie kurz, dass wir Sie informieren d&uuml;rfen, sobald dieses Modell wieder verf&uuml;gbar ist.&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
+  Ihr Wunschartikel ist ab sofort wieder bei uns erh&auml;ltlich.&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;
 </div>
 
 <!--
-  LEGAL NOTE (DEV):
-  Back-in-stock double-opt-in confirmation per Art. 6 Abs. 1 lit. a DSGVO
-  and § 7 Abs. 2 Nr. 2 UWG. The subscription is only legally valid AFTER
-  the customer clicks {$backInStockConfirmURL} in this email.
+  NOTE (DEV):
+  This is the BACK-IN-STOCK NOTIFICATION email — sent to customers who
+  previously subscribed (via JTL's "Benachrichtigen wenn verfügbar" form)
+  once the product crosses back into positive stock.
+
+  Legal basis: customer-initiated subscription per Art. 6 Abs. 1 lit. a DSGVO.
+  No § 7 Abs. 2 Nr. 2 UWG DOI step required — this is a single transactional
+  notification fulfilling a customer request, not unsolicited marketing.
+  After firing, JTL should drop the pending subscription (one-shot use).
+
+  Filename note: the file is still named back-in-stock-DOI.html for backwards
+  JTL slot compatibility — content is no longer DOI. Rename on next JTL migration.
 
   TRIGGER RESTRICTION:
-    - Send only for STOCK items (e.g. Reiniger, accessories, mounting kits).
-    - Do NOT offer "back-in-stock" subscriptions on custom-engraved
-      Türklingeln / Briefkästen — these are made-to-order, not stocked.
-      The product page should not display the "Benachrichtigen" form
-      for custom configurations.
-
-  Security:
-    - {$backInStockConfirmURL} MUST embed a cryptographically random,
-      single-use token (32+ bytes), HTTPS only, expires after 24 hours.
-    - If the customer never confirms: drop the pending subscription.
-    - One-shot use of the email address — drop after the
-      "Wieder verfügbar" notification fires.
+    - Fires only for STOCK items (e.g. Reiniger, accessories, mounting kits).
+    - Custom-engraved Türklingeln / Briefkästen are made-to-order — the
+      product page should not display the "Benachrichtigen" form for them.
 
   Placeholders:
-    {$backInStockConfirmURL}      — DOI confirmation link with single-use token
+    {$produkt->cURLFull}            — product page URL (CTA + product card link)
     {$produkt->Bilder[0]->cURLMini} — product thumbnail
-    {$produkt->cName}             — product display name
-    {$produkt->cArtNr}            — Art.-Nr.
+    {$produkt->cName}               — product display name
+    {$produkt->cArtNr}              — Art.-Nr.
 -->
 
 <table id="bodyTable" width="100%" cellpadding="0" cellspacing="0" role="presentation" bgcolor="#f2f4f2">
@@ -402,56 +401,33 @@
 
             <!-- HERO -->
             <tr>
-              <td class="hero" bgcolor="#f7f9f7" style="padding-bottom:16px;">
+              <td class="hero" bgcolor="#f7f9f7" style="padding-bottom:26px;">
 
-                <div class="hero-badge">Benachrichtigung best&auml;tigen</div>
+                <div class="hero-badge">Wieder verf&uuml;gbar</div>
 
-                <h1 class="hero-title">Sch&ouml;n, dass Sie auf dieses Modell warten.</h1>
+                <h1 class="hero-title">Ihr Wunschartikel ist wieder verf&uuml;gbar.</h1>
 
                 <p class="hero-subtitle">
-                  Best&auml;tigen Sie kurz Ihre E-Mail-Adresse &uuml;ber den Button unten. Sobald wir das Modell wieder vorr&auml;tig haben, melden wir uns bei Ihnen. Der Best&auml;tigungs-Link ist <strong style="color:#1a1a1a;">24 Stunden</strong> g&uuml;ltig.
+                  Wir freuen uns, Ihnen mitteilen zu d&uuml;rfen, dass der Artikel <strong style="color:#1a1a1a;">{$produkt->cName}</strong> ab sofort wieder bei uns erh&auml;ltlich ist. &Uuml;ber den Button unten kommen Sie direkt zum Artikel in unserem Onlineshop.
                 </p>
 
                 <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="border-radius:6px; background-color:#ffffff; overflow:hidden;">
 
-                  <!-- Row 1: Angefordert am + Gültig bis -->
-                  <tr>
-                    <td style="padding:10px; background-color:#f7f9f7; border-bottom:1px solid #e8ece8;">
-                      <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
-                        <tr>
-                          <td class="meta-col" style="width:50%; vertical-align:middle;">
-                            <div style="background-color:#ffffff; border:1px solid #e8ece8; border-radius:4px; padding:12px 16px;">
-                              <div class="meta-label" style="margin-bottom:4px;">Angefordert am</div>
-                              <div class="meta-value-light">22. Dezember 2024, 14:37&nbsp;Uhr</div>
-                            </div>
-                          </td>
-                          <td class="meta-col-spacer" style="width:10px;">&nbsp;</td>
-                          <td class="meta-col" style="width:50%; vertical-align:middle;">
-                            <div style="background-color:#ffffff; border:1px solid #e8ece8; border-radius:4px; padding:12px 16px;">
-                              <div class="meta-label" style="margin-bottom:4px;">G&uuml;ltig bis</div>
-                              <div class="meta-value">23. Dezember 2024, 14:37&nbsp;Uhr</div>
-                            </div>
-                          </td>
-                        </tr>
-                      </table>
-                    </td>
-                  </tr>
-
-                  <!-- Row 2: CTA -->
+                  <!-- Row: CTA -->
                   <tr>
                     <td style="padding:14px 10px 10px; background-color:#f7f9f7; text-align:center;">
                       <!--[if mso]>
                       <v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word"
-                        href="{$backInStockConfirmURL}" style="height:44px;v-text-anchor:middle;width:240px;" arcsize="11%"
+                        href="{$produkt->cURLFull}" style="height:44px;v-text-anchor:middle;width:180px;" arcsize="11%"
                         fillcolor="#015253" strokecolor="#015253">
                         <w:anchorlock/>
-                        <center style="color:#ffffff;font-family:Arial,sans-serif;font-size:14px;font-weight:600;">Benachrichtigung bestätigen</center>
+                        <center style="color:#ffffff;font-family:Arial,sans-serif;font-size:14px;font-weight:600;">Zum Artikel</center>
                       </v:roundrect>
                       <![endif]-->
                       <!--[if !mso]><!-->
-                      <a href="{$backInStockConfirmURL}" target="_blank" class="btn-primary"
+                      <a href="{$produkt->cURLFull}" target="_blank" class="btn-primary"
                          style="display:inline-block; background-color:#015253; color:#ffffff; font-family:'Montserrat','Helvetica Neue',Arial,sans-serif; font-size:14px; font-weight:600; letter-spacing:0.5px; padding:13px 30px; border-radius:5px; text-decoration:none; text-align:center;">
-                        Benachrichtigung best&auml;tigen
+                        Zum Artikel
                       </a>
                       <!--<![endif]-->
                     </td>
@@ -463,18 +439,19 @@
             </tr>
 
             <!-- ─────────────────────────── -->
-            <!-- IHRE BENACHRICHTIGUNG (Product card) -->
+            <!-- ARTIKEL (Product card, linked) -->
             <!-- ─────────────────────────── -->
             <tr>
               <td class="section">
-                <h2 class="section-label">Ihre Benachrichtigung gilt f&uuml;r</h2>
+                <h2 class="section-label">Artikel</h2>
 
                 <!--
                   DEV (JTL-Shop 5): Smarty vars to inject:
-                    img src   = {$produkt->Bilder[0]->cURLMini}
-                    img alt   = {$produkt->cName|escape}
-                    name      = {$produkt->cName}
-                    sku       = Art.-Nr. {$produkt->cArtNr}
+                    product URL = {$produkt->cURLFull}         ← links the row to the product page
+                    img src     = {$produkt->Bilder[0]->cURLMini}
+                    img alt     = {$produkt->cName|escape}
+                    name        = {$produkt->cName}
+                    sku         = Art.-Nr. {$produkt->cArtNr}
                   Mock data below for visual QA.
                 -->
                 <table width="100%" cellpadding="0" cellspacing="0" role="presentation"
@@ -484,13 +461,17 @@
                       <table width="100%" cellpadding="0" cellspacing="0" role="presentation">
                         <tr>
                           <td style="width:88px; padding-right:16px; vertical-align:middle;">
-                            <div style="width:72px; height:72px; overflow:hidden; border-radius:4px; border:1px solid #efefef; background-color:#f5f5f5; font-size:0; line-height:0;">
-                              <img src="../assets/reiniger/metzler-reiniger-fuer-pulverbeschichtete-oberflaechen-edelstahl.webp" alt="Metzler Reiniger f&uuml;r pulverbeschichtete Oberfl&auml;chen &amp; Edelstahl" width="72" height="72" style="display:block; width:72px; height:72px; object-fit:cover;" />
-                            </div>
+                            <a href="{$produkt->cURLFull}" target="_blank" style="text-decoration:none; display:block;">
+                              <div style="width:72px; height:72px; overflow:hidden; border-radius:4px; border:1px solid #efefef; background-color:#f5f5f5; font-size:0; line-height:0;">
+                                <img src="../assets/reiniger/metzler-reiniger-fuer-pulverbeschichtete-oberflaechen-edelstahl.webp" alt="Metzler Reiniger f&uuml;r pulverbeschichtete Oberfl&auml;chen &amp; Edelstahl" width="72" height="72" style="display:block; width:72px; height:72px; object-fit:cover;" />
+                              </div>
+                            </a>
                           </td>
                           <td style="vertical-align:middle;">
-                            <div class="product-name">Metzler Reiniger f&uuml;r pulverbeschichtete Oberfl&auml;chen und Edelstahl</div>
-                            <div class="product-sku">Art.-Nr. 30551</div>
+                            <a href="{$produkt->cURLFull}" target="_blank" style="text-decoration:none; color:inherit;">
+                              <div class="product-name">Metzler Reiniger f&uuml;r pulverbeschichtete Oberfl&auml;chen und Edelstahl</div>
+                              <div class="product-sku">Art.-Nr. 30551</div>
+                            </a>
                           </td>
                         </tr>
                       </table>
@@ -501,33 +482,6 @@
               </td>
             </tr>
 
-            <!-- ─────────────────────────── -->
-            <!-- SICHERHEITSHINWEIS          -->
-            <!-- ─────────────────────────── -->
-            <tr>
-              <td class="section">
-                <h2 class="section-label">Sie haben die Benachrichtigung nicht angefordert?</h2>
-
-                <p style="font-size:14px; color:#555; line-height:1.7; margin:0;">
-                  Dann ignorieren Sie diese E-Mail einfach &ndash; ohne Ihre Best&auml;tigung erhalten Sie keine Benachrichtigung von uns. Der Link verf&auml;llt automatisch nach 24&nbsp;Stunden.
-                </p>
-
-              </td>
-            </tr>
-
-            <!-- ─────────────────────────── -->
-            <!-- TEAM NOTE                   -->
-            <!-- ─────────────────────────── -->
-            <tr>
-              <td class="section" style="padding-top:22px; padding-bottom:32px; border-bottom:none;">
-                <p style="font-size:14px; color:#555; line-height:1.7; margin-bottom:10px;">
-                  Sobald Sie best&auml;tigt haben, melden wir uns einmalig, sobald das Modell wieder bei uns vorr&auml;tig ist. Eine weitere Verwendung Ihrer E-Mail-Adresse findet nicht statt.
-                </p>
-                <p style="font-size:13px; color:#015253; font-weight:600; font-style:italic; margin:0;">
-                  &mdash; Ihr Team von Metzler
-                </p>
-              </td>
-            </tr>
 
           </table><!-- /card -->
         </td>
