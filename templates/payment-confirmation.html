@@ -1215,15 +1215,22 @@
                 </table>
 
                 <!-- Est. timeline note -->
+                <!--
+                  DEV (JTL-Shop 5): "Voraussichtliche Lieferung" is NOT computed by JTL out of
+                  the box. Wrap the table in {if $voraussichtlicheLieferung}...{/if} so this
+                  callout only renders when an upstream Smarty plugin or custom logic computes it.
+                -->
+                {if $voraussichtlicheLieferung}
                 <table width="100%" cellpadding="0" cellspacing="0" role="presentation" style="margin-top:22px;">
                   <tr>
                     <td style="background-color:#eef4f4; border-radius:4px; padding:12px 16px; border-left:3px solid #015253;">
                       <div style="font-size:12px; color:#555; line-height:1.6;">
-                        <strong style="color:#1a1a1a;">Voraussichtliche Lieferung:</strong>&nbsp; 17. &ndash; 19. Dezember 2024
+                        <strong style="color:#1a1a1a;">Voraussichtliche Lieferung:</strong>&nbsp; {$voraussichtlicheLieferung}
                       </div>
                     </td>
                   </tr>
                 </table>
+                {/if}
 
               </td>
             </tr>

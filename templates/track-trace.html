@@ -851,7 +851,20 @@
             </tr>
 
             <!-- ─────────────────────────── -->
-            <!-- MANUFAKTUR-EMPFEHLUNG (Upsell §7(3) UWG, opt-out below) -->
+            <!--
+              MANUFAKTUR-EMPFEHLUNG / Upsell trio
+              Legal basis: § 7 Abs. 3 UWG existing-customer exception (recommendation of own
+              similar goods to an existing customer is permitted without prior consent, provided
+              the customer has not objected and was clearly informed of opt-out rights at email-
+              address collection).
+
+              Per Metzler business decision (commit a484784, 2026-05): the in-email
+              "Keine Empfehlungen mehr erhalten" opt-out link is intentionally NOT rendered here.
+              Customer-facing opt-out remains available via Datenschutz / AGB and unsubscribe by
+              contacting service@metzlergmbh.de.
+
+              Do NOT re-add the in-email opt-out link without checking that frozen decision.
+            -->
             <!-- ─────────────────────────── -->
             <tr>
               <td class="section" style="padding-top:28px; padding-bottom:32px; border-top:1px solid #f0f0f0; border-bottom:none;">
