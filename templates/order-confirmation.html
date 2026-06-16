@@ -913,10 +913,11 @@
                     Row 1: Dates
                     DEV (JTL-Shop 5): Bestelldatum = {$Bestellung->dErstelldatum_DE}.
                     "Voraussichtliche Lieferung" is NOT computed by JTL out of the box —
-                    wrap that cell in {if $voraussichtlicheLieferung}...{/if} so the cell
-                    only renders when an upstream Smarty plugin or custom logic computes it.
-                    If empty, the meta-col-spacer + missing right cell make Bestelldatum
-                    span 100%. Re-style the row to single-column when the right cell is absent.
+                    its card CONTENT is wrapped in {if $voraussichtlicheLieferung}...{/if}
+                    INSIDE the right cell (not around the cell), so the <td> stays in the
+                    table and no foster-parented Smarty tags leak into non-Smarty previews.
+                    The card only renders when an upstream plugin/custom logic sets the var.
+                    If empty, the right 50% cell is blank — make Bestelldatum full-width if preferred.
                   -->
                   <tr>
                     <td style="padding:10px 10px; background-color:#f7f9f7; border-bottom:1px solid #e8ece8;">
@@ -928,15 +929,15 @@
                               <div class="meta-value-light">08. Dezember 2024</div>
                             </div>
                           </td>
-                          {if $voraussichtlicheLieferung}
                           <td class="meta-col-spacer" style="width:10px;">&nbsp;</td>
                           <td class="meta-col" style="width:50%; vertical-align:middle;">
+                            {if $voraussichtlicheLieferung}
                             <div style="background-color:#ffffff; border:1px solid #e8ece8; border-radius:4px; padding:12px 16px;">
                               <div class="meta-label" style="margin-bottom:4px;">Voraussichtliche Lieferung</div>
                               <div class="meta-value-light">{$voraussichtlicheLieferung}</div>
                             </div>
+                            {/if}
                           </td>
-                          {/if}
                         </tr>
                       </table>
                     </td>
